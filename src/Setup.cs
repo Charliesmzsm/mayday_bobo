@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -8,8 +8,8 @@ using Microsoft.Win32;
 [assembly: AssemblyTitle("Mojo 萝卜桌宠安装程序")]
 [assembly: AssemblyCompany("Mojo Carrot")]
 [assembly: AssemblyProduct("Mojo 萝卜桌宠")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.2.0")]
+[assembly: AssemblyFileVersion("1.1.2.0")]
 namespace MojoCarrot.Installation {
     static class SetupProgram {
         [STAThread]static int Main(string[] args){
@@ -37,7 +37,7 @@ namespace MojoCarrot.Installation {
                 InstallPaths.Shortcut(Path.Combine(InstallPaths.StartFolder,"卸载 Mojo 萝卜桌宠.lnk"),Path.Combine(InstallPaths.Home,"Uninstall.exe"),"","卸载 Mojo 萝卜桌宠");
                 if(desktop)InstallPaths.Shortcut(InstallPaths.DesktopLink,Path.Combine(InstallPaths.Home,"MojoCarrot.exe"),"","Mojo 萝卜桌宠");
                 using(RegistryKey key=Registry.CurrentUser.CreateSubKey(InstallPaths.RegistryPath)){
-                    key.SetValue("DisplayName","Mojo 萝卜桌宠");key.SetValue("DisplayVersion","1.0.0");key.SetValue("Publisher","Mojo Carrot");key.SetValue("InstallLocation",InstallPaths.Home);key.SetValue("DisplayIcon",Path.Combine(InstallPaths.Home,"MojoCarrot.exe"));key.SetValue("UninstallString","\""+Path.Combine(InstallPaths.Home,"Uninstall.exe")+"\"");key.SetValue("NoModify",1,RegistryValueKind.DWord);key.SetValue("NoRepair",1,RegistryValueKind.DWord);key.SetValue("EstimatedSize",checked((int)(new FileInfo(Path.Combine(InstallPaths.Home,"MojoCarrot.exe")).Length/1024+100)),RegistryValueKind.DWord);
+                    key.SetValue("DisplayName","Mojo 萝卜桌宠");key.SetValue("DisplayVersion","1.1.2");key.SetValue("Publisher","Mojo Carrot");key.SetValue("InstallLocation",InstallPaths.Home);key.SetValue("DisplayIcon",Path.Combine(InstallPaths.Home,"MojoCarrot.exe"));key.SetValue("UninstallString","\""+Path.Combine(InstallPaths.Home,"Uninstall.exe")+"\"");key.SetValue("NoModify",1,RegistryValueKind.DWord);key.SetValue("NoRepair",1,RegistryValueKind.DWord);key.SetValue("EstimatedSize",checked((int)(new FileInfo(Path.Combine(InstallPaths.Home,"MojoCarrot.exe")).Length/1024+100)),RegistryValueKind.DWord);
                 }
             }catch{
                 bool previous=File.Exists(Path.Combine(backup,"MojoCarrot.exe"));
@@ -71,7 +71,9 @@ namespace MojoCarrot.Installation {
             Controls.Add(new Label{Text="安装位置（当前 Windows 用户）：\n"+InstallPaths.Home,Location=new Point(31,154),Size=new Size(500,56),AutoEllipsis=true});
             desktop.Text="创建桌面快捷方式";desktop.Checked=true;desktop.SetBounds(31,225,280,25);Controls.Add(desktop);
             launch.Text="安装完成后启动桌宠";launch.Checked=true;launch.SetBounds(31,257,300,25);Controls.Add(launch);
-            status.Text="无需管理员权限，约占用 4 MB 空间。";status.SetBounds(31,299,490,32);Controls.Add(status);
+            using(Stream payload=Assembly.GetExecutingAssembly().GetManifestResourceStream("MojoCarrot.exe"))
+                status.Text="无需管理员权限，约占用 "+(int)Math.Ceiling(payload.Length/1048576.0+1)+" MB 空间。";
+            status.SetBounds(31,299,490,32);Controls.Add(status);
             install.Text="安装";install.SetBounds(412,340,115,34);install.Click+=InstallClicked;Controls.Add(install);AcceptButton=install;
             Button cancel=new Button{Text="取消",Location=new Point(288,340),Size=new Size(110,34),DialogResult=DialogResult.Cancel};cancel.Click+=delegate{Close();};Controls.Add(cancel);CancelButton=cancel;
         }

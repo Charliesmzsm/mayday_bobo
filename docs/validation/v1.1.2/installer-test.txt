@@ -1,0 +1,3 @@
+PASS: payload extraction, native Windows shortcut creation and target resolution, uninstall of owned files, preservation of unrelated user files.
+Payload SHA256 4aaf9d780ab254f7813601d769648fdba2ac7e25a2daa526c7383c34b8571e00
+System install paths and registration were not modified by this test.

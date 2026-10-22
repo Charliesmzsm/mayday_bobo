@@ -1,0 +1,498 @@
+{
+  "version": "1.1.2",
+  "source_directory": "C:\\Users\\admin\\WorkBuddy\\2026-10-21-10-49-48\\frames_surprise48_v2_384x416",
+  "primary_strip_pixel_exact": true,
+  "alpha_bit_identical_to_v1": true,
+  "same_neutral_endpoints": true,
+  "unique_frames": 47,
+  "frames": [
+    {
+      "frame": 1,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 2,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 3,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 4,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 5,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 6,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 7,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 8,
+      "changed_pixels": 2790,
+      "difference_bbox": [
+        148,
+        314,
+        236,
+        356
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 9,
+      "changed_pixels": 3361,
+      "difference_bbox": [
+        147,
+        314,
+        235,
+        364
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 10,
+      "changed_pixels": 4705,
+      "difference_bbox": [
+        146,
+        258,
+        235,
+        369
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 11,
+      "changed_pixels": 5043,
+      "difference_bbox": [
+        144,
+        256,
+        235,
+        370
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 12,
+      "changed_pixels": 5883,
+      "difference_bbox": [
+        141,
+        255,
+        238,
+        376
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 13,
+      "changed_pixels": 6259,
+      "difference_bbox": [
+        139,
+        256,
+        241,
+        379
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 14,
+      "changed_pixels": 6652,
+      "difference_bbox": [
+        136,
+        257,
+        243,
+        381
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 15,
+      "changed_pixels": 6932,
+      "difference_bbox": [
+        134,
+        257,
+        245,
+        386
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 16,
+      "changed_pixels": 6526,
+      "difference_bbox": [
+        134,
+        257,
+        244,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 17,
+      "changed_pixels": 6563,
+      "difference_bbox": [
+        138,
+        257,
+        245,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 18,
+      "changed_pixels": 6563,
+      "difference_bbox": [
+        136,
+        257,
+        241,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 19,
+      "changed_pixels": 6583,
+      "difference_bbox": [
+        134,
+        257,
+        245,
+        387
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 20,
+      "changed_pixels": 6558,
+      "difference_bbox": [
+        135,
+        258,
+        246,
+        387
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 21,
+      "changed_pixels": 6503,
+      "difference_bbox": [
+        134,
+        258,
+        245,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 22,
+      "changed_pixels": 6503,
+      "difference_bbox": [
+        138,
+        258,
+        246,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 23,
+      "changed_pixels": 6479,
+      "difference_bbox": [
+        135,
+        258,
+        244,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 24,
+      "changed_pixels": 6524,
+      "difference_bbox": [
+        135,
+        258,
+        244,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 25,
+      "changed_pixels": 6443,
+      "difference_bbox": [
+        136,
+        259,
+        245,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 26,
+      "changed_pixels": 6443,
+      "difference_bbox": [
+        136,
+        259,
+        245,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 27,
+      "changed_pixels": 6524,
+      "difference_bbox": [
+        135,
+        258,
+        244,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 28,
+      "changed_pixels": 6479,
+      "difference_bbox": [
+        135,
+        258,
+        244,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 29,
+      "changed_pixels": 6505,
+      "difference_bbox": [
+        138,
+        258,
+        246,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 30,
+      "changed_pixels": 6448,
+      "difference_bbox": [
+        136,
+        259,
+        246,
+        387
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 31,
+      "changed_pixels": 6412,
+      "difference_bbox": [
+        135,
+        262,
+        245,
+        389
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 32,
+      "changed_pixels": 7017,
+      "difference_bbox": [
+        134,
+        258,
+        246,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 33,
+      "changed_pixels": 7234,
+      "difference_bbox": [
+        134,
+        257,
+        245,
+        387
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 34,
+      "changed_pixels": 7218,
+      "difference_bbox": [
+        134,
+        256,
+        245,
+        386
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 35,
+      "changed_pixels": 7203,
+      "difference_bbox": [
+        134,
+        257,
+        245,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 36,
+      "changed_pixels": 6939,
+      "difference_bbox": [
+        134,
+        262,
+        246,
+        389
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 37,
+      "changed_pixels": 6451,
+      "difference_bbox": [
+        134,
+        260,
+        245,
+        389
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 38,
+      "changed_pixels": 6636,
+      "difference_bbox": [
+        134,
+        259,
+        246,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 39,
+      "changed_pixels": 6842,
+      "difference_bbox": [
+        134,
+        260,
+        246,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 40,
+      "changed_pixels": 6868,
+      "difference_bbox": [
+        135,
+        259,
+        245,
+        388
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 41,
+      "changed_pixels": 6628,
+      "difference_bbox": [
+        136,
+        259,
+        243,
+        384
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 42,
+      "changed_pixels": 6125,
+      "difference_bbox": [
+        139,
+        259,
+        240,
+        379
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 43,
+      "changed_pixels": 5562,
+      "difference_bbox": [
+        142,
+        258,
+        237,
+        375
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 44,
+      "changed_pixels": 4332,
+      "difference_bbox": [
+        145,
+        311,
+        235,
+        371
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 45,
+      "changed_pixels": 4106,
+      "difference_bbox": [
+        146,
+        311,
+        235,
+        369
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 46,
+      "changed_pixels": 3569,
+      "difference_bbox": [
+        147,
+        311,
+        235,
+        365
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 47,
+      "changed_pixels": 2952,
+      "difference_bbox": [
+        148,
+        312,
+        235,
+        357
+      ],
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 48,
+      "changed_pixels": 0,
+      "difference_bbox": null,
+      "alpha_unchanged": true
+    }
+  ]
+}

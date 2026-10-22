@@ -1,0 +1,5 @@
+PASS: 2981 assertions (legacy self-test also passed).
+Unfiltered 100000-draw distribution: curious_tilt=24101, surprise_star=6017, wave=15974, leaf_fidget=33947, happy_bounce=11900, think=8061
+Cache peaks bytes: frames=33546240, pages=16613376; budgets=33554432,16777216
+GDI before/after=3/3; measured working set=156950528 bytes.
+Total assertions including cache rendering=5418

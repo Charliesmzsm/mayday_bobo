@@ -1,0 +1,351 @@
+{
+ "clip": "mojo_carrot_surprise",
+ "version": "v2 (retouch 01+02+03)",
+ "width": 384,
+ "height": 416,
+ "frames": 48,
+ "fps": 24,
+ "duration_seconds": 2.0,
+ "loop": true,
+ "loop_point": "frame 48 -> frame 1 (both are the neutral stand)",
+ "colours": "RGBA, straight-up premultiplied? see notes",
+ "timecode": "00:00:00:00 - 00:00:02:00",
+ "frame_list": [
+  {
+   "i": 1,
+   "file": "mojo_carrot_surprise_001.png",
+   "t0": 0.0,
+   "t1": 0.041667,
+   "dur": 0.041667
+  },
+  {
+   "i": 2,
+   "file": "mojo_carrot_surprise_002.png",
+   "t0": 0.041667,
+   "t1": 0.083333,
+   "dur": 0.041667
+  },
+  {
+   "i": 3,
+   "file": "mojo_carrot_surprise_003.png",
+   "t0": 0.083333,
+   "t1": 0.125,
+   "dur": 0.041667
+  },
+  {
+   "i": 4,
+   "file": "mojo_carrot_surprise_004.png",
+   "t0": 0.125,
+   "t1": 0.166667,
+   "dur": 0.041667
+  },
+  {
+   "i": 5,
+   "file": "mojo_carrot_surprise_005.png",
+   "t0": 0.166667,
+   "t1": 0.208333,
+   "dur": 0.041667
+  },
+  {
+   "i": 6,
+   "file": "mojo_carrot_surprise_006.png",
+   "t0": 0.208333,
+   "t1": 0.25,
+   "dur": 0.041667
+  },
+  {
+   "i": 7,
+   "file": "mojo_carrot_surprise_007.png",
+   "t0": 0.25,
+   "t1": 0.291667,
+   "dur": 0.041667
+  },
+  {
+   "i": 8,
+   "file": "mojo_carrot_surprise_008.png",
+   "t0": 0.291667,
+   "t1": 0.333333,
+   "dur": 0.041667
+  },
+  {
+   "i": 9,
+   "file": "mojo_carrot_surprise_009.png",
+   "t0": 0.333333,
+   "t1": 0.375,
+   "dur": 0.041667
+  },
+  {
+   "i": 10,
+   "file": "mojo_carrot_surprise_010.png",
+   "t0": 0.375,
+   "t1": 0.416667,
+   "dur": 0.041667
+  },
+  {
+   "i": 11,
+   "file": "mojo_carrot_surprise_011.png",
+   "t0": 0.416667,
+   "t1": 0.458333,
+   "dur": 0.041667
+  },
+  {
+   "i": 12,
+   "file": "mojo_carrot_surprise_012.png",
+   "t0": 0.458333,
+   "t1": 0.5,
+   "dur": 0.041667
+  },
+  {
+   "i": 13,
+   "file": "mojo_carrot_surprise_013.png",
+   "t0": 0.5,
+   "t1": 0.541667,
+   "dur": 0.041667
+  },
+  {
+   "i": 14,
+   "file": "mojo_carrot_surprise_014.png",
+   "t0": 0.541667,
+   "t1": 0.583333,
+   "dur": 0.041667
+  },
+  {
+   "i": 15,
+   "file": "mojo_carrot_surprise_015.png",
+   "t0": 0.583333,
+   "t1": 0.625,
+   "dur": 0.041667
+  },
+  {
+   "i": 16,
+   "file": "mojo_carrot_surprise_016.png",
+   "t0": 0.625,
+   "t1": 0.666667,
+   "dur": 0.041667
+  },
+  {
+   "i": 17,
+   "file": "mojo_carrot_surprise_017.png",
+   "t0": 0.666667,
+   "t1": 0.708333,
+   "dur": 0.041667
+  },
+  {
+   "i": 18,
+   "file": "mojo_carrot_surprise_018.png",
+   "t0": 0.708333,
+   "t1": 0.75,
+   "dur": 0.041667
+  },
+  {
+   "i": 19,
+   "file": "mojo_carrot_surprise_019.png",
+   "t0": 0.75,
+   "t1": 0.791667,
+   "dur": 0.041667
+  },
+  {
+   "i": 20,
+   "file": "mojo_carrot_surprise_020.png",
+   "t0": 0.791667,
+   "t1": 0.833333,
+   "dur": 0.041667
+  },
+  {
+   "i": 21,
+   "file": "mojo_carrot_surprise_021.png",
+   "t0": 0.833333,
+   "t1": 0.875,
+   "dur": 0.041667
+  },
+  {
+   "i": 22,
+   "file": "mojo_carrot_surprise_022.png",
+   "t0": 0.875,
+   "t1": 0.916667,
+   "dur": 0.041667
+  },
+  {
+   "i": 23,
+   "file": "mojo_carrot_surprise_023.png",
+   "t0": 0.916667,
+   "t1": 0.958333,
+   "dur": 0.041667
+  },
+  {
+   "i": 24,
+   "file": "mojo_carrot_surprise_024.png",
+   "t0": 0.958333,
+   "t1": 1.0,
+   "dur": 0.041667
+  },
+  {
+   "i": 25,
+   "file": "mojo_carrot_surprise_025.png",
+   "t0": 1.0,
+   "t1": 1.041667,
+   "dur": 0.041667
+  },
+  {
+   "i": 26,
+   "file": "mojo_carrot_surprise_026.png",
+   "t0": 1.041667,
+   "t1": 1.083333,
+   "dur": 0.041667
+  },
+  {
+   "i": 27,
+   "file": "mojo_carrot_surprise_027.png",
+   "t0": 1.083333,
+   "t1": 1.125,
+   "dur": 0.041667
+  },
+  {
+   "i": 28,
+   "file": "mojo_carrot_surprise_028.png",
+   "t0": 1.125,
+   "t1": 1.166667,
+   "dur": 0.041667
+  },
+  {
+   "i": 29,
+   "file": "mojo_carrot_surprise_029.png",
+   "t0": 1.166667,
+   "t1": 1.208333,
+   "dur": 0.041667
+  },
+  {
+   "i": 30,
+   "file": "mojo_carrot_surprise_030.png",
+   "t0": 1.208333,
+   "t1": 1.25,
+   "dur": 0.041667
+  },
+  {
+   "i": 31,
+   "file": "mojo_carrot_surprise_031.png",
+   "t0": 1.25,
+   "t1": 1.291667,
+   "dur": 0.041667
+  },
+  {
+   "i": 32,
+   "file": "mojo_carrot_surprise_032.png",
+   "t0": 1.291667,
+   "t1": 1.333333,
+   "dur": 0.041667
+  },
+  {
+   "i": 33,
+   "file": "mojo_carrot_surprise_033.png",
+   "t0": 1.333333,
+   "t1": 1.375,
+   "dur": 0.041667
+  },
+  {
+   "i": 34,
+   "file": "mojo_carrot_surprise_034.png",
+   "t0": 1.375,
+   "t1": 1.416667,
+   "dur": 0.041667
+  },
+  {
+   "i": 35,
+   "file": "mojo_carrot_surprise_035.png",
+   "t0": 1.416667,
+   "t1": 1.458333,
+   "dur": 0.041667
+  },
+  {
+   "i": 36,
+   "file": "mojo_carrot_surprise_036.png",
+   "t0": 1.458333,
+   "t1": 1.5,
+   "dur": 0.041667
+  },
+  {
+   "i": 37,
+   "file": "mojo_carrot_surprise_037.png",
+   "t0": 1.5,
+   "t1": 1.541667,
+   "dur": 0.041667
+  },
+  {
+   "i": 38,
+   "file": "mojo_carrot_surprise_038.png",
+   "t0": 1.541667,
+   "t1": 1.583333,
+   "dur": 0.041667
+  },
+  {
+   "i": 39,
+   "file": "mojo_carrot_surprise_039.png",
+   "t0": 1.583333,
+   "t1": 1.625,
+   "dur": 0.041667
+  },
+  {
+   "i": 40,
+   "file": "mojo_carrot_surprise_040.png",
+   "t0": 1.625,
+   "t1": 1.666667,
+   "dur": 0.041667
+  },
+  {
+   "i": 41,
+   "file": "mojo_carrot_surprise_041.png",
+   "t0": 1.666667,
+   "t1": 1.708333,
+   "dur": 0.041667
+  },
+  {
+   "i": 42,
+   "file": "mojo_carrot_surprise_042.png",
+   "t0": 1.708333,
+   "t1": 1.75,
+   "dur": 0.041667
+  },
+  {
+   "i": 43,
+   "file": "mojo_carrot_surprise_043.png",
+   "t0": 1.75,
+   "t1": 1.791667,
+   "dur": 0.041667
+  },
+  {
+   "i": 44,
+   "file": "mojo_carrot_surprise_044.png",
+   "t0": 1.791667,
+   "t1": 1.833333,
+   "dur": 0.041667
+  },
+  {
+   "i": 45,
+   "file": "mojo_carrot_surprise_045.png",
+   "t0": 1.833333,
+   "t1": 1.875,
+   "dur": 0.041667
+  },
+  {
+   "i": 46,
+   "file": "mojo_carrot_surprise_046.png",
+   "t0": 1.875,
+   "t1": 1.916667,
+   "dur": 0.041667
+  },
+  {
+   "i": 47,
+   "file": "mojo_carrot_surprise_047.png",
+   "t0": 1.916667,
+   "t1": 1.958333,
+   "dur": 0.041667
+  },
+  {
+   "i": 48,
+   "file": "mojo_carrot_surprise_048.png",
+   "t0": 1.958333,
+   "t1": 2.0,
+   "dur": 0.041667
+  }
+ ]
+}

@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 [assembly: AssemblyTitle("Mojo 萝卜桌宠卸载")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.2.0")]
+[assembly: AssemblyFileVersion("1.1.2.0")]
 namespace MojoCarrot.Installation {
     static class Uninstaller {
         [STAThread] static int Main(string[] args){
