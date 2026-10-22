@@ -6,10 +6,10 @@
 
 ## 下载与安装
 
-- **[下载安装包 v1.0.0](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.0.0/MojoCarrot-Setup-1.0.0.exe)**：推荐，双击安装，含快捷方式与卸载入口。
-- **[下载便携版 v1.0.0](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.0.0/MojoCarrot-Portable-1.0.0.zip)**：解压后双击 MojoCarrot.exe。
-- [下载完整源码 v1.0.0](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.0.0/MojoCarrot-Source-1.0.0.zip)：包含 C# 代码、图片素材、编译脚本和文档，可离线编译。
-- [全部版本](https://github.com/Charliesmzsm/mayday_bobo/releases) · [SHA256 校验文件](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.0.0/SHA256SUMS.txt)
+- **[下载安装包 v1.2.0](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.2.0/MojoCarrot-Setup-1.2.0.exe)**：推荐，双击安装，含快捷方式与卸载入口。
+- **[下载便携版 v1.2.0](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.2.0/MojoCarrot-Portable-1.2.0.zip)**：解压后双击 MojoCarrot.exe。
+- [下载完整源码 v1.2.0](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.2.0/MojoCarrot-Source-1.2.0.zip)：包含 C# 代码、图片素材、编译脚本和文档，可离线编译。
+- [全部版本](https://github.com/Charliesmzsm/mayday_bobo/releases) · [SHA256 校验文件](https://github.com/Charliesmzsm/mayday_bobo/releases/download/v1.2.0/SHA256SUMS.txt)
 
 面向 Windows 10 / 11，需要 .NET Framework 4.8 系统组件；无需 Python、Node.js 或开发工具。当前版本在 Windows 11 实机验证。
 
@@ -21,7 +21,7 @@
 安装包尚未数字签名，Windows 可能提示“未知发布者”或 SmartScreen。请核对来源和 SHA256，不需要关闭系统防护。
 
 ```powershell
-Get-FileHash .\MojoCarrot-Setup-1.0.0.exe -Algorithm SHA256
+Get-FileHash .\MojoCarrot-Setup-1.2.0.exe -Algorithm SHA256
 ```
 
 ![安装界面](docs/images/setup.png)
