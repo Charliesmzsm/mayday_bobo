@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace MojoCarrot {
         long smokeStart,smokeDue;
         TimeSpan smokeCpu;
         readonly StringBuilder smokeTrace=new StringBuilder();
+        readonly HashSet<int> smokeSeen=new HashSet<int>();
+        long smokeClipStart;
         void SmokeTick() {
             long now=clock.Now;
             if(smokeIndex<0) {
@@ -20,15 +23,25 @@ namespace MojoCarrot {
                 StartSmokeClip();
             }
             if(now>=smokeDue) {
-                smokeTrace.AppendLine(player.Current.Id+" played "+(now-(smokeDue-(player.Current.Id=="gaze"?1000:player.Current.Duration)))+"ms");
+                smokeTrace.AppendLine(catalog.Actions[smokeIndex].Id+" played "+(now-smokeClipStart)+"ms; distinct timeline frames="+smokeSeen.Count);
                 smokeIndex++;
                 if(smokeIndex>=catalog.Actions.Length){FinishSmoke();return;}
                 StartSmokeClip();
             }
             // Exercise the production clock, frame cache and UpdateLayeredWindow at normal speed.
-            RenderCurrent(false);smokePaints++;
+            ActionSpec current=catalog.Actions[smokeIndex];
+            if(current.Id=="gaze"&&current.IsGrid) {
+                double angle=(now-smokeClipStart)*Math.PI/1400;
+                smoothGaze.Update(Math.Sin(angle),Math.Cos(angle),8);
+                if(now-lastGazePaint>=16){Native.Paint(Handle,sprites.GetGaze(smoothGaze.X,smoothGaze.Y),Location);lastGazePaint=now;}
+            }else {
+                smokeSeen.Add(player.Frame);
+                if(player.Origin==ActionOrigin.Walk&&walkUntil!=0)UpdateWalk(now,8);
+                RenderCurrent(false);
+            }
+            smokePaints++;
         }
-        void StartSmokeClip(){ActionSpec action=catalog.Actions[smokeIndex];player.Start(action,ActionOrigin.Manual);smokeDue=clock.Now+(action.Id=="gaze"?1000:action.Duration);smokeTrace.AppendLine("Start "+action.Id+" frames="+action.Frames.Length);}
+        void StartSmokeClip(){ActionSpec action=catalog.Actions[smokeIndex];smokeSeen.Clear();smoothGaze.Reset();smokeClipStart=clock.Now;player.Start(action,ActionOrigin.Manual);if(action.RootX!=null){Rectangle w=Screen.FromRectangle(Bounds).WorkingArea;Location=new Point(w.Left+(w.Width-Width)/2,Top);BeginWalk(action.Id=="hop_right"?1:-1,action.Duration);}smokeDue=clock.Now+(action.Id=="gaze"?(action.IsGrid?3000:1000):action.Duration);smokeTrace.AppendLine("Start "+action.Id+" frames="+action.Frames.Length);}
         void FinishSmoke() {
             timer.Stop();
             Directory.CreateDirectory(Path.GetDirectoryName(smokeReport));
@@ -60,7 +73,7 @@ namespace MojoCarrot {
             menu.Show(Cursor.Position);Application.DoEvents();MotionTests.Require(menuOpen&&blocked,"menu blocks playback");
             using(Bitmap image=new Bitmap(menu.Width,menu.Height)){menu.DrawToBitmap(image,new Rectangle(0,0,menu.Width,menu.Height));image.Save(smokeReport+".menu.png");}
             menu.Close();Application.DoEvents();MotionTests.Require(!menuOpen&&!blocked,"menu resumes safely");
-            settings.Wander=true;BeginWalk(1,2000);Rectangle area=Screen.FromRectangle(Bounds).WorkingArea;Location=new Point(area.Right-Width,Top);walkX=Left;UpdateWalk(clock.Now,100);MotionTests.Require(player.IsIdle&&Left<=area.Right-Width,"native boundary stops walk");
+            settings.Wander=true;Rectangle area=Screen.FromRectangle(Bounds).WorkingArea;Location=new Point(area.Right-Width,Top);BeginWalk(1,2000);MotionTests.Require(player.IsIdle&&Left<=area.Right-Width,"native boundary prevents outwards hop");
             using(Process p=Process.GetCurrentProcess()) {
                 int gdi=MotionTests.GetGuiResources(p.Handle,0);
                 // Menu/font initialization legitimately creates process-lifetime handles.

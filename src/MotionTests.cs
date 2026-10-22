@@ -20,7 +20,9 @@ namespace MojoCarrot {
         public static int Run(string output) {
             Directory.CreateDirectory(output);count=0;LegacyTests.Run(Path.Combine(output,"legacy"));
             AnimationCatalog c=Fresh();Require(c.Has("surprise_star")&&c.FallbackReason==null,"new resources loaded");
-            Require(c.Actions.Sum(a=>a.Frames.Length)==406,"390 animation frames plus 16 gaze poses");
+            Require(c.Actions.Sum(a=>a.Frames.Length)==519,"438 animation frames plus 81 gaze poses");
+            Require(c["gaze"].IsGrid&&c["gaze"].Frames.Length==81,"9 by 9 gaze lookup");
+            Require(c["hop_right"].Duration==800&&c["hop_left"].Duration==800,"48 frames at 60fps last 800ms");
             Require(c["surprise_star"].Duration==2000,"48 frames last exactly 2 seconds");
             Require(c["surprise_star"].Durations.Contains(41)&&c["surprise_star"].Durations.Contains(42),"24fps fractional timing");
             foreach(ActionSpec a in c.Actions) {
@@ -30,6 +32,10 @@ namespace MojoCarrot {
             var invalid=Fresh();invalid["wave"].Frames[0].Rect[0]=999999;Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject out-of-page rect");
             invalid=Fresh();invalid["wave"].Frames[0].Pivot=new[]{-1,0};Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject invalid pivot");
             invalid=Fresh();invalid["wave"].Durations[0]=0;Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject zero duration");
+            invalid=Fresh();invalid["gaze"].GridCols=8;Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject malformed gaze grid");
+            invalid=Fresh();invalid["hop_right"].RootX=new[]{0.0};Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject root count");
+            invalid=Fresh();invalid["hop_right"].RootX[4]=Double.NaN;Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject nonfinite root curve");
+            invalid=Fresh();invalid["hop_right"].RootX[10]=-1;Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject reversed root curve");
             invalid=Fresh();invalid["surprise_star"].Cooldown=0;Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject weakened surprise cooldown");
             invalid=Fresh();invalid.Scheduler.Profiles[0].Wait=new[]{100,1};Reject(()=>invalid.Validate(AnimationCatalog.OpenResource),"reject invalid range");
             invalid=Fresh();Reject(()=>invalid.Validate(delegate(string name){return null;}),"reject missing resources");
@@ -93,6 +99,21 @@ namespace MojoCarrot {
             double x=99.5;for(int i=0;i<100;i++)x=WalkMotion.Advance(x,1,16,2000,0,100);Require(x<=100&&x>=99.5,"walk stays at right boundary");
             x=.5;for(int i=0;i<100;i++)x=WalkMotion.Advance(x,-1,16,2000,0,100);Require(x>=0&&x<=.5,"walk stays at left boundary");
             Require(PetForm.ClampTo(new Point(-999,999),new Size(192,208),new Rectangle(-100,0,800,600))==new Point(-100,392),"negative monitor and lower boundary");
+            var gazeSmooth=new SmoothGaze();gazeSmooth.Update(1,-1,16);Require(gazeSmooth.X>0&&gazeSmooth.X<1&&gazeSmooth.Y<0,"gaze responds on first sample");
+            for(int i=0;i<20;i++)gazeSmooth.Update(1,-1,16);Require(gazeSmooth.X>.99&&gazeSmooth.X<=1,"gaze converges without overshoot");
+            double prior=gazeSmooth.X;gazeSmooth.Update(-1,1,16);Require(gazeSmooth.X<prior&&gazeSmooth.X>-1,"gaze reverses immediately and smoothly");
+            gazeSmooth.Reset();Require(gazeSmooth.X==0&&gazeSmooth.Y==0,"gaze reset on blocking/action change");
+            var g1=new SmoothGaze();var g2=new SmoothGaze();for(int i=0;i<10;i++)g1.Update(.7,-.4,8);g2.Update(.7,-.4,80);Require(Math.Abs(g1.X-g2.X)<1e-12&&Math.Abs(g1.Y-g2.Y)<1e-12,"gaze smoothing independent of tick rate");
+            foreach(int direction in new[]{-1,1})foreach(double scale in new[]{.6,1.0,2.0}) {
+                ActionSpec clip=c[direction>0?"hop_right":"hop_left"];
+                var travel=new HopTravel(clip,0,direction,1601,scale,-1000,1000);Require(travel.Duration==2400,"walk ends on whole hop");
+                Require(Math.Abs(travel.Position(800)-direction*32*scale)<1e-9&&Math.Abs(travel.Position(2400)-direction*96*scale)<1e-9,"scaled hop accumulates without wrap-back");
+                Require(travel.Position(100)==0,"no sliding during grounded anticipation");
+                Require(Math.Abs(travel.Position(600)-travel.Position(790))<1e-9,"no sliding during landing");
+                var edge=new HopTravel(clip,0,direction,5000,scale,-5,5);double previous=0;
+                for(int t=0;t<=edge.Duration;t+=8){double pos=edge.Position(t);Require(pos>=-5&&pos<=5&&direction*(pos-previous)>=-1e-9,"shortened edge hop remains monotonic and in bounds");previous=pos;}
+                Require(Math.Abs(edge.Position(edge.Duration)-direction*5)<1e-9,"edge hop lands at boundary");
+            }
             var xml=new XmlSerializer(typeof(Settings));using(var reader=new StringReader("<Settings><SizePercent>125</SizePercent><AutoActions>false</AutoActions></Settings>")){var old=(Settings)xml.Deserialize(reader);Require(old.RandomProfile=="standard"&&old.SizePercent==125&&!old.AutoActions,"old settings default new field");}
             var results=new StringBuilder();results.AppendLine("PASS: "+count+" assertions (legacy self-test also passed).");
             results.AppendLine("Unfiltered 100000-draw distribution: "+String.Join(", ",counts.Select(p=>p.Key+"="+p.Value)));
@@ -105,6 +126,18 @@ namespace MojoCarrot {
                         using(Bitmap contact=new Bitmap(4*cache.Width,2*(cache.Height+20)))using(Graphics g=Graphics.FromImage(contact)) {
                             for(int j=0;j<8;j++){int column=j%4,row=j/4;g.FillRectangle(row==0?Brushes.WhiteSmoke:Brushes.Black,column*cache.Width,row*(cache.Height+20),cache.Width,cache.Height+20);g.DrawImageUnscaled(cache.GetFrame(a.Id,(j%4)*(a.Frames.Length-1)/3),column*cache.Width,row*(cache.Height+20));g.DrawString(percent+"% "+a.Id,SystemFonts.DefaultFont,Brushes.Gray,column*cache.Width,row*(cache.Height+20)+cache.Height);}
                             contact.Save(Path.Combine(output,a.Id+"-"+percent+".png"));
+                        }
+                    }
+                    using(Bitmap neutral=(Bitmap)cache.GetFrame("gaze",40).Clone()) {
+                        Bitmap sampled=cache.GetGaze(0,0);Require(sampled.GetPixel(sampled.Width/2,sampled.Height/2)==neutral.GetPixel(neutral.Width/2,neutral.Height/2),"gaze neutral sampling preserves pixels");
+                        for(int i=0;i<120;i++) {
+                            double theta=i*Math.PI/30;Bitmap blend=cache.GetGaze(Math.Sin(theta),Math.Cos(theta));
+                            Require(cache.FrameBytes<=c.FrameBudget&&cache.PageBytes<=c.PageBudget,"gaze sampler scratch included in budget");
+                            Require(blend.GetPixel(blend.Width/2,blend.Height*4/5)==neutral.GetPixel(neutral.Width/2,neutral.Height*4/5),"gaze cannot change mouth/body");
+                        }
+                        using(Bitmap contact=new Bitmap(cache.Width*5,cache.Height*2))using(Graphics graphics=Graphics.FromImage(contact)) {
+                            for(int j=0;j<10;j++){graphics.FillRectangle(j<5?Brushes.WhiteSmoke:Brushes.Black,(j%5)*cache.Width,(j/5)*cache.Height,cache.Width,cache.Height);graphics.DrawImageUnscaled(cache.GetGaze((j%5-2)/2.0,j<5?-.65:.65),(j%5)*cache.Width,(j/5)*cache.Height);}
+                            contact.Save(Path.Combine(output,"gaze-sampled-"+percent+".png"));
                         }
                     }
                 }

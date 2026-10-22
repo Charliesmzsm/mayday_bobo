@@ -20,6 +20,6 @@ $petSources = @('Pet.cs','AnimationModel.cs','FrameCache.cs','AnimationEngine.cs
 if ($LASTEXITCODE -ne 0) { throw 'Pet compile failed' }
 & $compiler @baseArgs ('/out:' + (Join-Path $build 'Uninstall.exe')) (Join-Path $src 'InstallCommon.cs') (Join-Path $src 'Uninstall.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Uninstaller compile failed' }
-& $compiler @baseArgs ('/out:' + (Join-Path $build 'MojoCarrot-Setup-1.1.2.exe')) ('/resource:' + (Join-Path $build 'MojoCarrot.exe') + ',MojoCarrot.exe') ('/resource:' + (Join-Path $build 'Uninstall.exe') + ',Uninstall.exe') ('/resource:' + (Join-Path $assets '使用说明.txt') + ',使用说明.txt') ('/resource:' + (Join-Path $assets 'mojo.ico') + ',mojo.ico') (Join-Path $src 'InstallCommon.cs') (Join-Path $src 'Setup.cs')
+& $compiler @baseArgs ('/out:' + (Join-Path $build 'MojoCarrot-Setup-1.2.0.exe')) ('/resource:' + (Join-Path $build 'MojoCarrot.exe') + ',MojoCarrot.exe') ('/resource:' + (Join-Path $build 'Uninstall.exe') + ',Uninstall.exe') ('/resource:' + (Join-Path $assets '使用说明.txt') + ',使用说明.txt') ('/resource:' + (Join-Path $assets 'mojo.ico') + ',mojo.ico') (Join-Path $src 'InstallCommon.cs') (Join-Path $src 'Setup.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Setup compile failed' }
 Get-ChildItem -LiteralPath $build -Filter '*.exe' | Select-Object Name,Length

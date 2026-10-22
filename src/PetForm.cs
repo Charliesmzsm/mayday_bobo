@@ -21,6 +21,11 @@ namespace MojoCarrot {
         Point lastCursor,dragMouse,dragOrigin;
         long lastTick,lastPointer,lastManual,nextBlink,nextYawn,nextWalk,gazeAfter,walkUntil,gazeCandidateSince;
         double walkX;int walkDirection,gaze=-1,gazeCandidate=-1;
+        readonly SmoothGaze smoothGaze=new SmoothGaze();HopTravel hopTravel;
+        long gazeTick,lastGazePaint;
+        [System.Runtime.InteropServices.DllImport("winmm.dll")]static extern uint timeBeginPeriod(uint period);
+        [System.Runtime.InteropServices.DllImport("winmm.dll")]static extern uint timeEndPeriod(uint period);
+        bool preciseTimer;
         bool paused,petHidden,locked,menuOpen,dragging,wasDragged,blocked,initialized,closing;
         string lastRender;Point lastRenderLocation;
         ToolStripMenuItem showItem,clickItem,pauseItem,surpriseItem;
@@ -41,7 +46,7 @@ namespace MojoCarrot {
             BuildMenu();
             tray=new NotifyIcon{Icon=Icon,Text="Mojo 萝卜 · 双击召回 / 右键菜单",ContextMenuStrip=menu,Visible=!smoke};
             tray.DoubleClick+=delegate{RestorePet();};
-            timer.Interval=16;timer.Tick+=Tick;
+            timer.Interval=8;timer.Tick+=Tick;
             MouseDown+=OnMouseDown;MouseMove+=OnMouseMove;MouseUp+=OnMouseUp;
             MouseCaptureChanged+=delegate{if(dragging&&!Capture){dragging=false;clicks.Cancel();Idle();UpdateBlock();}};
             MouseDoubleClick+=delegate(object s,MouseEventArgs e){if(e.Button==MouseButtons.Left&&!wasDragged&&!paused&&!locked){dragging=false;Capture=false;UpdateBlock();clicks.DoubleClick();ManualDoubleClick();}};
@@ -49,7 +54,7 @@ namespace MojoCarrot {
             Microsoft.Win32.SystemEvents.SessionSwitch+=SessionChanged;
         }
         protected override void OnShown(EventArgs e) {
-            base.OnShown(e);initialized=true;SetClickThrough();lastCursor=Cursor.Position;ResetSchedule();RenderCurrent(true);timer.Start();
+            base.OnShown(e);initialized=true;preciseTimer=timeBeginPeriod(1)==0;SetClickThrough();lastCursor=Cursor.Position;ResetSchedule();RenderCurrent(true);timer.Start();
             if(catalog.FallbackReason!=null&&!smoke) {
                 try{Directory.CreateDirectory(Program.DataDir);File.WriteAllText(Path.Combine(Program.DataDir,"animation-fallback.txt"),catalog.FallbackReason);}catch(IOException){}
                 tray.ShowBalloonTip(4000,"Mojo 萝卜","新动作资源不可用，已使用旧版兼容动画。详情见本机 animation-fallback.txt。",ToolTipIcon.Info);
@@ -60,12 +65,13 @@ namespace MojoCarrot {
         protected override void WndProc(ref Message m){if(m.Msg==Program.RestoreMessage){RestorePet();return;}if(m.Msg==0x21){m.Result=new IntPtr(3);return;}base.WndProc(ref m);}
         public static Point Clamp(Point point,Size size){Rectangle work=Screen.FromRectangle(new Rectangle(point,size)).WorkingArea;return ClampTo(point,size,work);}
         public static Point ClampTo(Point point,Size size,Rectangle work){return new Point(Math.Max(work.Left,Math.Min(point.X,work.Right-size.Width)),Math.Max(work.Top,Math.Min(point.Y,work.Bottom-size.Height)));}
-        void Idle(){player.Start(catalog["idle_breathe"],ActionOrigin.Idle);walkUntil=0;gaze=-1;lastRender=null;}
+        void Idle(){player.Start(catalog["idle_breathe"],ActionOrigin.Idle);walkUntil=0;hopTravel=null;gaze=-1;smoothGaze.Reset();gazeTick=clock.Now;lastRender=null;}
         void ResetSchedule(){long now=clock.Now;lastTick=lastPointer=lastManual=now;scheduler.Schedule();nextBlink=now+scheduler.Between(catalog.Scheduler.BlinkWait);nextYawn=now+scheduler.Between(catalog.Scheduler.YawnWait);nextWalk=now+random.Next(25000,45001);gazeAfter=now+catalog.Interaction.GazeResume;clicks.Cancel();}
         void UpdateBlock() {
             bool next=paused||petHidden||locked||menuOpen||dragging;
             if(next==blocked)return;
             blocked=next;player.SetFrozen(blocked);clicks.Cancel();
+            smoothGaze.Reset();gazeTick=clock.Now;
             if(!blocked){walkUntil=0;if(player.Origin==ActionOrigin.Walk)Idle();ResetSchedule();lastCursor=Cursor.Position;}
         }
         void ActionCompleted() {
@@ -79,7 +85,7 @@ namespace MojoCarrot {
             if(!scheduler.TryStart(id,origin!=ActionOrigin.Manual,origin==ActionOrigin.Random))return false;
             if(petHidden)RestorePet();
             if(origin==ActionOrigin.Manual&&(id=="hop_right"||id=="hop_left")){lastManual=clock.Now;BeginWalk(id=="hop_right"?1:-1,2400);return true;}
-            walkUntil=0;player.Start(catalog[id],origin);gaze=-1;lastRender=null;
+            walkUntil=0;hopTravel=null;player.Start(catalog[id],origin);gaze=-1;smoothGaze.Reset();gazeTick=clock.Now;lastRender=null;
             if(origin==ActionOrigin.Manual){lastManual=clock.Now;scheduler.Schedule();}
             RenderCurrent(true);return true;
         }
@@ -113,11 +119,22 @@ namespace MojoCarrot {
         }
         void BeginWalk(int direction,int duration) {
             walkDirection=direction;walkX=Left;walkUntil=clock.Now+duration;gaze=-1;
-            player.Start(catalog[direction>0?"hop_right":"hop_left"],ActionOrigin.Walk);
+            ActionSpec action=catalog[direction>0?"hop_right":"hop_left"];
+            Rectangle area=Screen.FromRectangle(Bounds).WorkingArea;
+            double max=Math.Max(area.Left,area.Right-Width);
+            if((direction>0?max-Left:Left-area.Left)<.8){Idle();nextWalk=clock.Now+random.Next(25000,45001);return;}
+            hopTravel=action.RootX==null?null:new HopTravel(action,Left,direction,duration,settings.SizePercent/100.0,area.Left,max);
+            player.Start(action,ActionOrigin.Walk);smoothGaze.Reset();lastRender=null;
         }
         void UpdateWalk(long now,long elapsed) {
             Rectangle area=Screen.FromRectangle(Bounds).WorkingArea;
             double min=area.Left,max=Math.Max(min,area.Right-Width);
+            if(hopTravel!=null) {
+                walkX=hopTravel.Position(player.Elapsed);
+                Location=ClampTo(new Point((int)Math.Round(walkX),Top),Size,area);
+                if(player.Elapsed>=hopTravel.Duration){Idle();gazeAfter=now+catalog.Interaction.GazeResume;scheduler.Schedule();nextWalk=now+random.Next(25000,45001);}
+                return;
+            }
             walkX=WalkMotion.Advance(walkX,walkDirection,elapsed,walkUntil-now,min,max);
             Location=ClampTo(new Point((int)Math.Round(walkX),Top),Size,area);
             if(now>=walkUntil||walkDirection>0&&max-walkX<.8||walkDirection<0&&walkX-min<.8){Idle();gazeAfter=now+catalog.Interaction.GazeResume;scheduler.Schedule();}
@@ -133,7 +150,21 @@ namespace MojoCarrot {
         }
         void RenderCurrent(bool force) {
             string id=player.Current.Id;int frame=player.Frame;
-            if(!smoke&&!blocked&&player.IsIdle&&settings.FollowMouse&&clock.Now>=gazeAfter&&clock.Now-lastPointer<2200) {
+            long now=clock.Now,delta=now-gazeTick;gazeTick=now;
+            if(!smoke&&catalog["gaze"].IsGrid&&!blocked&&player.IsIdle&&settings.FollowMouse&&now>=gazeAfter) {
+                Point p=Cursor.Position;double size=settings.SizePercent/100.0;
+                double dx=(p.X-(Left+Width/2.0))/(180*size),dy=(p.Y-(Top+Height*.66))/(180*size);
+                bool active=now-lastPointer<2200;
+                smoothGaze.Update(active?dx:0,active?dy:0,delta);
+                if(active||Math.Abs(smoothGaze.X)+Math.Abs(smoothGaze.Y)>.002) {
+                    int qx=(int)Math.Round(smoothGaze.X*512),qy=(int)Math.Round(smoothGaze.Y*512);
+                    string sample="gaze-grid:"+qx+":"+qy;
+                    if(!force&&(now-lastGazePaint<16||sample==lastRender&&Location==lastRenderLocation))return;
+                    Native.Paint(Handle,sprites.GetGaze(qx/512.0,qy/512.0),Location);
+                    lastGazePaint=now;lastRender=sample;lastRenderLocation=Location;return;
+                }
+            }
+            if(!smoke&&!catalog["gaze"].IsGrid&&!blocked&&player.IsIdle&&settings.FollowMouse&&clock.Now>=gazeAfter&&clock.Now-lastPointer<2200) {
                 Point p=Cursor.Position;double dx=p.X-(Left+Width/2.0),dy=p.Y-(Top+Height*.6),d=Math.Sqrt(dx*dx+dy*dy);
                 if(d>45&&d<1000){id="gaze";frame=GazeDirection(dx,dy);}
             }
@@ -166,7 +197,7 @@ namespace MojoCarrot {
         void Save(){if(smoke)return;try{settings.Save();}catch(IOException){tray.ShowBalloonTip(2500,"Mojo 萝卜","设置未保存，请检查当前用户目录权限。",ToolTipIcon.Warning);}}
         ToolStripMenuItem Toggle(string text,bool value,Action<bool> setter){var item=new ToolStripMenuItem(text){Checked=value,CheckOnClick=true};item.CheckedChanged+=delegate{setter(item.Checked);Save();};return item;}
         void BuildMenu() {
-            menu.Font=new Font("Microsoft YaHei UI",9);menu.Items.Add(new ToolStripMenuItem("Mojo 萝卜 · 1.1.2 离线桌宠"){Enabled=false});
+            menu.Font=new Font("Microsoft YaHei UI",9);menu.Items.Add(new ToolStripMenuItem("Mojo 萝卜 · 1.2.0 离线桌宠"){Enabled=false});
             menu.Opening+=delegate{menuOpen=true;lastManual=clock.Now;UpdateBlock();if(surpriseItem!=null){long wait=scheduler.Remaining("surprise_star");surpriseItem.Enabled=wait==0;surpriseItem.Text=wait==0?"星星眼惊喜":"星星眼惊喜（冷却 "+(wait+999)/1000+" 秒）";}};
             menu.Closed+=delegate{menuOpen=false;UpdateBlock();};
             var actions=new ToolStripMenuItem("做个动作");
@@ -190,15 +221,15 @@ namespace MojoCarrot {
             showItem=new ToolStripMenuItem("隐藏桌宠");showItem.Click+=delegate{if(petHidden)RestorePet();else{petHidden=true;Hide();showItem.Text="显示桌宠";UpdateBlock();}};menu.Items.Add(showItem);
             menu.Items.Add("召回到鼠标所在屏幕",null,delegate{RestorePet();Rectangle w=Screen.FromPoint(Cursor.Position).WorkingArea;Location=Clamp(new Point(w.Right-Width-30,w.Bottom-Height-20),Size);RenderCurrent(true);});
             menu.Items.Add(new ToolStripSeparator());menu.Items.Add(Toggle("登录 Windows 时启动",StartupEnabled(),SetStartup));
-            menu.Items.Add("关于 / 操作说明",null,delegate{MessageBox.Show("Mojo 萝卜桌宠 1.1.2\n\n单击：叶片招手\n双击：开心跳跃，偶尔星星眼惊喜\n拖动：移动并取消当前动作\n惊喜至少间隔 3 分钟，10 分钟最多 2 次\n关闭自动动作后保留轻呼吸；暂停冻结全部动画\n\n"+(catalog.Has("surprise_star")?"新动作素材已加载":"当前使用旧图集兼容模式")+"\n设置："+Program.DataDir,"Mojo 萝卜",MessageBoxButtons.OK,MessageBoxIcon.Information);});
+            menu.Items.Add("关于 / 操作说明",null,delegate{MessageBox.Show("Mojo 萝卜桌宠 1.2.0\n\n单击：叶片招手\n双击：开心跳跃，偶尔星星眼惊喜\n拖动：移动并取消当前动作\n惊喜至少间隔 3 分钟，10 分钟最多 2 次\n关闭自动动作后保留轻呼吸；暂停冻结全部动画\n\n"+(catalog.Has("surprise_star")?"新动作素材已加载":"当前使用旧图集兼容模式")+"\n设置："+Program.DataDir,"Mojo 萝卜",MessageBoxButtons.OK,MessageBoxIcon.Information);});
             menu.Items.Add("退出桌宠",null,delegate{Close();});
         }
-        void ResizePet(int percent){int bottom=Bottom,center=Left+Width/2;settings.SizePercent=percent;sprites.Resize(percent);ClientSize=new Size(sprites.Width,sprites.Height);Location=Clamp(new Point(center-Width/2,bottom-Height),Size);lastRender=null;RenderCurrent(true);}
+        void ResizePet(int percent){if(player.Origin==ActionOrigin.Walk)Idle();int bottom=Bottom,center=Left+Width/2;settings.SizePercent=percent;sprites.Resize(percent);ClientSize=new Size(sprites.Width,sprites.Height);Location=Clamp(new Point(center-Width/2,bottom-Height),Size);lastRender=null;RenderCurrent(true);}
         static bool StartupEnabled(){try{using(var k=Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run"))return k!=null&&k.GetValue("MojoCarrotDesktop")!=null;}catch{return false;}}
         static void SetStartup(bool enabled){try{using(var k=Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run")){if(enabled)k.SetValue("MojoCarrotDesktop","\""+Application.ExecutablePath+"\"");else k.DeleteValue("MojoCarrotDesktop",false);}}catch(Exception ex){MessageBox.Show(ex.Message,"无法修改登录启动");}}
         void SetClickThrough(){int style=Native.GetWindowLong(Handle,-20);style=settings.ClickThrough?style|0x20:style&~0x20;Native.SetWindowLong(Handle,-20,style);}
         void RestorePet(){petHidden=false;showItem.Text="隐藏桌宠";if(settings.ClickThrough){settings.ClickThrough=false;clickItem.Checked=false;SetClickThrough();}Location=Clamp(Location,Size);Show();UpdateBlock();RenderCurrent(true);}
         protected override void OnFormClosing(FormClosingEventArgs e){if(!closing){closing=true;timer.Stop();if(!smoke){settings.X=Left;settings.Y=Top;Save();}tray.Visible=false;}base.OnFormClosing(e);}
-        protected override void Dispose(bool disposing){if(disposing){Microsoft.Win32.SystemEvents.DisplaySettingsChanged-=DisplayChanged;Microsoft.Win32.SystemEvents.SessionSwitch-=SessionChanged;timer.Dispose();tray.Dispose();menu.Dispose();sprites.Dispose();}base.Dispose(disposing);}
+        protected override void Dispose(bool disposing){if(disposing){if(preciseTimer){timeEndPeriod(1);preciseTimer=false;}Microsoft.Win32.SystemEvents.DisplaySettingsChanged-=DisplayChanged;Microsoft.Win32.SystemEvents.SessionSwitch-=SessionChanged;timer.Dispose();tray.Dispose();menu.Dispose();sprites.Dispose();}base.Dispose(disposing);}
     }
 }

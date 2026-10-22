@@ -16,6 +16,7 @@ namespace MojoCarrot {
         public AnimationPlayer(IClock time){clock=time;}
         public void Start(ActionSpec a,ActionOrigin origin){Current=a;Origin=origin;start=clock.Now;completed=false;if(frozen)freezeAt=clock.Now;}
         public int Frame {get{return Current.FrameAt((frozen?freezeAt:clock.Now)-start);}}
+        public long Elapsed {get{return Math.Max(0,(frozen?freezeAt:clock.Now)-start);}}
         public bool IsIdle {get{return Origin==ActionOrigin.Idle;}}
         public void SetFrozen(bool value){if(value==frozen)return;if(value)freezeAt=clock.Now;else start+=clock.Now-freezeAt;frozen=value;}
         public void Update(){if(frozen||completed||Current==null||Current.Loop)return;if(clock.Now-start>=Current.Duration){completed=true;if(Completed!=null)Completed();}}
@@ -73,6 +74,40 @@ namespace MojoCarrot {
         public void DoubleClick(){pending=false;suppressRelease=true;}
         public bool Poll(long now){if(!pending||now<due)return false;pending=false;return true;}
         public void Cancel(){pending=false;suppressRelease=false;}
+    }
+    // Continuous target coordinates; no direction debounce or queued pointer samples.
+    public sealed class SmoothGaze {
+        public double X {get;private set;}public double Y {get;private set;}
+        public void Reset(){X=Y=0;}
+        public void Update(double x,double y,long elapsed) {
+            double blend=1-Math.Exp(-Math.Max(0,Math.Min(100,elapsed))/50.0);
+            X+=(Math.Max(-1,Math.Min(1,x))-X)*blend;Y+=(Math.Max(-1,Math.Min(1,y))-Y)*blend;
+            if(Math.Abs(X)<.0001)X=0;if(Math.Abs(Y)<.0001)Y=0;
+        }
+    }
+    // The same timeline selects the artwork and its cumulative horizontal displacement.
+    public sealed class HopTravel {
+        readonly ActionSpec action;readonly double start,scale,available;readonly int direction,cycles;
+        public int Duration {get{return cycles*action.Duration;}}
+        public HopTravel(ActionSpec clip,double x,int sign,int requested,double sizeScale,double min,double max) {
+            action=clip;start=x;direction=sign;scale=sizeScale;
+            available=Math.Max(0,sign>0?max-x:x-min);
+            double stride=Math.Abs(action.RootX[action.RootX.Length-1])*scale;
+            cycles=Math.Min(Math.Max(1,(int)Math.Ceiling(requested/(double)action.Duration)),Math.Max(1,(int)Math.Ceiling(available/stride)));
+        }
+        public double Position(long elapsed) {
+            elapsed=Math.Max(0,Math.Min(Duration,elapsed));int full=(int)(elapsed/action.Duration);
+            double stride=Math.Abs(action.RootX[action.RootX.Length-1])*scale;
+            double distance=Math.Min(available,full*stride);
+            if(full<cycles) {
+                long phase=elapsed%action.Duration;int frame=action.FrameAt(phase);long begin=0;
+                for(int i=0;i<frame;i++)begin+=action.Durations[i];
+                double root=Math.Abs(action.RootX[frame]);
+                if(frame+1<action.RootX.Length)root+=(Math.Abs(action.RootX[frame+1])-root)*(phase-begin)/(double)action.Durations[frame];
+                distance+=Math.Min(stride,Math.Max(0,available-distance))*root*scale/stride;
+            }
+            return start+direction*distance;
+        }
     }
     public static class WalkMotion {
         public static double Advance(double x,int direction,long elapsed,long remaining,double min,double max) {

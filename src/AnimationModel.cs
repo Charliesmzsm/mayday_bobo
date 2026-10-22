@@ -31,6 +31,10 @@ namespace MojoCarrot {
         [DataMember(Name="rate_limit")] public int RateLimit;
         [DataMember(Name="pages")] public PageSpec[] Pages;
         [DataMember(Name="frames")] public FrameSpec[] Frames;
+        [DataMember(Name="grid_rows",EmitDefaultValue=false)] public int GridRows;
+        [DataMember(Name="grid_cols",EmitDefaultValue=false)] public int GridCols;
+        [DataMember(Name="root_x_logical",EmitDefaultValue=false)] public double[] RootX;
+        public bool IsGrid {get{return GridRows>0&&GridCols>0;}}
         public int Duration { get { return Durations.Sum(); } }
         public int FrameAt(long elapsed) {
             elapsed=Math.Max(0,elapsed);
@@ -89,6 +93,14 @@ namespace MojoCarrot {
                 Check(!String.IsNullOrEmpty(a.Id)&&ids.Add(a.Id)&&!String.IsNullOrEmpty(a.Label),"Duplicate or invalid action id");
                 Check(a.Frames!=null&&a.Frames.Length>0&&a.Frames.Length<=512&&a.Durations!=null&&a.Frames.Length==a.Durations.Length,"Frame timing count mismatch: "+a.Id);
                 Check(a.Durations.All(t=>t>=10&&t<=10000)&&a.Duration<120000,"Invalid frame timing: "+a.Id);
+                Check((a.GridRows==0&&a.GridCols==0)||(a.Id=="gaze"&&a.GridRows==9&&a.GridCols==9&&a.Frames.Length==81),"Invalid gaze grid");
+                if(a.RootX!=null) {
+                    Check((a.Id=="hop_right"||a.Id=="hop_left")&&a.Loop&&a.RootX.Length==a.Frames.Length,"Invalid root motion count/action");
+                    Check(a.RootX.All(v=>!Double.IsNaN(v)&&!Double.IsInfinity(v)&&Math.Abs(v)<=192)&&a.RootX[0]==0,"Invalid root motion values");
+                    int direction=a.Id=="hop_right"?1:-1;
+                    Check(direction*a.RootX.Last()>0,"Invalid root motion direction");
+                    for(int i=1;i<a.RootX.Length;i++)Check(direction*(a.RootX[i]-a.RootX[i-1])>=0,"Root motion reverses");
+                }
                 Check(a.Weight>=0&&a.Weight<=10000&&a.Cooldown>=0&&a.Cooldown<=3600000,"Invalid scheduler weight/cooldown");
                 Check(a.RateWindow>=0&&a.RateWindow<=3600000&&a.RateLimit>=0&&a.RateLimit<=1000&&(a.RateLimit==0)==(a.RateWindow==0),"Invalid rate limit");
                 Check(a.Pages!=null&&a.Pages.Length>0,"Missing pages");
@@ -120,7 +132,7 @@ namespace MojoCarrot {
                     Check(f.Pivot[0]>=0&&f.Pivot[0]<=r[2]&&f.Pivot[1]>=0&&f.Pivot[1]<=r[3],"Invalid frame pivot");
                 }
             }
-            Check(Has("idle_breathe")&&Has("gaze")&&this["gaze"].Frames.Length==16&&Has("wave")&&Has("happy_bounce"),"Required actions missing");
+            Check(Has("idle_breathe")&&Has("gaze")&&(this["gaze"].IsGrid||this["gaze"].Frames.Length==16)&&Has("wave")&&Has("happy_bounce"),"Required actions missing");
             if(Has("surprise_star"))Check(this["surprise_star"].Cooldown>=180000&&this["surprise_star"].RateWindow==600000&&this["surprise_star"].RateLimit==2,"Unsafe surprise frequency");
             Check(FrameBudget>=1048576&&FrameBudget<=67108864&&PageBudget>=6291456&&PageBudget<=33554432,"Invalid cache budgets");
             Check(Scheduler!=null&&Scheduler.Profiles!=null&&Scheduler.Profiles.Length==3,"Missing scheduling configuration");

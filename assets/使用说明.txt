@@ -1,4 +1,4 @@
-Mojo 萝卜桌宠 1.1.2 — 独立离线 Windows 版（本地构建）
+Mojo 萝卜桌宠 1.2.0 — 独立离线 Windows 版（本地构建）
 
 Windows 10/11，.NET Framework 4.8。无需账号、网络、ChatGPT、Codex、Python 或 Node。
 全部资源嵌入 EXE；同一会话只启动一只，安装版与便携版共享本机设置。

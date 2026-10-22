@@ -14,8 +14,8 @@ using System.Xml.Serialization;
 [assembly: AssemblyDescription("独立离线桌面宠物")]
 [assembly: AssemblyCompany("Mojo Carrot")]
 [assembly: AssemblyProduct("Mojo 萝卜桌宠")]
-[assembly: AssemblyVersion("1.1.2.0")]
-[assembly: AssemblyFileVersion("1.1.2.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
 
 namespace MojoCarrot {
     public static class Program {

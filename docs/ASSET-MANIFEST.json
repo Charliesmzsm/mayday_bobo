@@ -1,6 +1,6 @@
 {
   "source_directory": "C:\\Users\\admin\\WorkBuddy\\2026-10-21-10-49-48",
-  "provenance": "User-supplied frames. v1.1.2 imports the approved primary v2 surprise clip byte-for-pixel; other embedded pages are unchanged from v1.1.1. Premultiplied RGB is explicitly decoded for the 12 motion actions; gaze and legacy assets use straight alpha. Optional v2rim is not imported.",
+  "provenance": "v1.2.0: user-supplied gaze_grid_v2 (81 straight-alpha poses) and left/right hop_v2 (48 frames / 800ms each), losslessly paged. Gaze coordinates and hop_offset_curve are validated and integrated into runtime. Surprise v2 and other actions retain v1.1.2 pixels and alpha storage modes.",
   "actions": [
     {
       "id": "idle_breathe",
@@ -5036,927 +5036,910 @@
     },
     {
       "id": "hop_right",
-      "count": 24,
-      "unique_frames": 24,
-      "max_hole_px": 0,
-      "max_inner_soft_px": 0,
-      "first_equals_last": false,
+      "count": 48,
+      "unique_frames": 47,
+      "alpha_mode": "straight",
       "frames": [
         {
           "frame": 0,
-          "bbox": [
-            61,
-            58,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "dc250cf577075db002f7d2523d606a30752fc79bf9cd23717b6d899462a148d6",
-          "source": "mojo_carrot_hopwalk_r_01.png",
-          "source_file_sha256": "448a9aff91995ca4a28b059f38c4e6778249b12174a531d2ceebfd3ffbe3f390"
+          "sha256": "8c3b64d4435152c5fab45c9fda36878bc8143fc7ae848e18e0626cc2acb16ce7",
+          "source": "hop_right_v2_01.png"
         },
         {
           "frame": 1,
-          "bbox": [
-            60,
-            60,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "02f22e042de0d04a7ec9889fc44b735b2dd78de6a071e17f6c4cf6283caecd15",
-          "source": "mojo_carrot_hopwalk_r_02.png",
-          "source_file_sha256": "ce3f173dc59127fbef44c04e5858dc918f5c56cdb25de9c5f71d479a03d02ee5"
+          "sha256": "254c5efaf64f8e85acb6c6bda433e5695ddedc3bbd89be2c04934a45387661a6",
+          "source": "hop_right_v2_02.png"
         },
         {
           "frame": 2,
-          "bbox": [
-            59,
-            65,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "a2e89cc8e452c946a732ba7f130974a639fcb8df7c13d2f50d0f8e8f3b9752fe",
-          "source": "mojo_carrot_hopwalk_r_03.png",
-          "source_file_sha256": "6f70e0bdf0e122e2c45f95965ebd508f313dfef8c4affd4a15224938348cf6ba"
+          "sha256": "1c143ecd68ac07efec44b04f57f6dd60b1f9654424f4bbc1859e9cb25c3d176c",
+          "source": "hop_right_v2_03.png"
         },
         {
           "frame": 3,
-          "bbox": [
-            57,
-            75,
-            328,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "d9cedaec2adf4f3d83cfc0ef75a65ce2527315aa4580bf13c2044227ce874638",
-          "source": "mojo_carrot_hopwalk_r_04.png",
-          "source_file_sha256": "7167472910f1d52320306405b3be6a57a9b8ffce396d43935c76cc03fb2fa0e1"
+          "sha256": "b5b5c8480d1cf977b63164f56f6f540da478460692a4d9a3bfb7ba083f2007c6",
+          "source": "hop_right_v2_04.png"
         },
         {
           "frame": 4,
-          "bbox": [
-            61,
-            58,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "4ebd33da8830b4bfd4e93dbf2635318777124b95e5db2469a98484c4b3897559",
-          "source": "mojo_carrot_hopwalk_r_05.png",
-          "source_file_sha256": "12c2f8d94ce7fe9ad885154e668d20bdd115f05cfa32b0371f51909190b18515"
+          "sha256": "6b57201abeefba4b49ba86b03e599e7f00dc3ba60d8aca40815dc137479ab98b",
+          "source": "hop_right_v2_05.png"
         },
         {
           "frame": 5,
-          "bbox": [
-            62,
-            53,
-            324,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "ad178c66d717ac2493c1b28e4a784c2cba890ec4d18bb1e84edf8607a2684621",
-          "source": "mojo_carrot_hopwalk_r_06.png",
-          "source_file_sha256": "c38906eed1a1c125feecefceec98ef5765d3b91c412c690e3a633c03b255a683"
+          "sha256": "5f991ab85c06dfcc78f825edea493d790abeaf5fc2680714943e3b87c07d105d",
+          "source": "hop_right_v2_06.png"
         },
         {
           "frame": 6,
-          "bbox": [
-            61,
-            52,
-            324,
-            390
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "5a11367fa3a20593e8606d8831757814cc364ae78aab3f02f7ea799772503e3d",
-          "source": "mojo_carrot_hopwalk_r_07.png",
-          "source_file_sha256": "1f08970fcd91342aded20037f6ecb5d81b0e6c4d98a0d3e9b350ebd4b3aca372"
+          "sha256": "deaaca3fff661df4754d9fe57b0ab0ebe7bcb330e9c4da9ac211c8681d598e8c",
+          "source": "hop_right_v2_07.png"
         },
         {
           "frame": 7,
-          "bbox": [
-            61,
-            52,
-            325,
-            386
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "80db058ede1c58a663ce049e5e719c0e8ab942c8c6716515f946783523be6ee6",
-          "source": "mojo_carrot_hopwalk_r_08.png",
-          "source_file_sha256": "8c15b843dac9bf5e7e808c85a46f8d9f5986b1973ebbd38a979a2e48ca1fdff3"
+          "sha256": "7feba474da6ad3a53657f7a911fe7ca1eb93e34416721457f70f9f431ac23b01",
+          "source": "hop_right_v2_08.png"
         },
         {
           "frame": 8,
-          "bbox": [
-            60,
-            52,
-            325,
-            384
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "1007bd1ddde0eeeeebb9f29c216ede00161baf54981e86a0ea92cb473c70a090",
-          "source": "mojo_carrot_hopwalk_r_09.png",
-          "source_file_sha256": "8763b88c4be19e0190d785b5826113225ee8480f8cbd59e74e835f2cea38f41b"
+          "sha256": "ad816fc1c690b72827eb69a6ec0e5fb9dcbca152ca116b7c6489834745d3e487",
+          "source": "hop_right_v2_09.png"
         },
         {
           "frame": 9,
-          "bbox": [
-            60,
-            51,
-            326,
-            382
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "9931791155184ead02cc0d888ad8678847cabb7e694de0030170f041e2e15edb",
-          "source": "mojo_carrot_hopwalk_r_10.png",
-          "source_file_sha256": "bcf6af7512ae28ca6ddeb4aafc26197e150d8d568b6dde4abc68b64918e60966"
+          "sha256": "4a488d0dea87fe72dea40f7705ad839c5172898b45a8d498e73708fcdb8a2a9f",
+          "source": "hop_right_v2_10.png"
         },
         {
           "frame": 10,
-          "bbox": [
-            60,
-            52,
-            326,
-            381
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "595b665ae2fb5ec3d162c6d39f97201ccb8683aa1bb5feefda0aa8370c99b26c",
-          "source": "mojo_carrot_hopwalk_r_11.png",
-          "source_file_sha256": "b924202f9f85c62138b09a16256a097138088d69302d90e7bb8e82724aed179b"
+          "sha256": "64f30655844e645d1b236417426470b0119867da6130a5007e7f13136b5189c0",
+          "source": "hop_right_v2_11.png"
         },
         {
           "frame": 11,
-          "bbox": [
-            59,
-            52,
-            326,
-            381
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "e6380bca21c050e40225ce4b971ce6675760367f4217b9556ddc67484565b37b",
-          "source": "mojo_carrot_hopwalk_r_12.png",
-          "source_file_sha256": "d176230b54ee4b9becd911c948e4808ff982c16ee8c7a09407d465841d886360"
+          "sha256": "36ddf52570ade3d1f603ced4bc17866ddcf44cfa2230bad312d7750e29d9501f",
+          "source": "hop_right_v2_12.png"
         },
         {
           "frame": 12,
-          "bbox": [
-            59,
-            51,
-            326,
-            382
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "b37a4084444aa950e2e3c96a985259921b38a0dba134bd12a18cdae18196a013",
-          "source": "mojo_carrot_hopwalk_r_13.png",
-          "source_file_sha256": "1c06773a8aa4a0d3a1f026ea569e555a752c046413597eb202545594e4dfe0f2"
+          "sha256": "b54b996a5695e6d64df7969c56f84508f9156d27aa2c9d6cbf477d18ecf9ea70",
+          "source": "hop_right_v2_13.png"
         },
         {
           "frame": 13,
-          "bbox": [
-            59,
-            51,
-            326,
-            383
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "cebe236f43dd569976638792d63be30a0c615856bd70715841549aced2b839ac",
-          "source": "mojo_carrot_hopwalk_r_14.png",
-          "source_file_sha256": "5330c7e86220ab6c25c4b66b561067aca5ec1f644ea89a6d2f5728746265d5c8"
+          "sha256": "faa99246f7efd3ff6f64fbeac15d27f4b4f310a0dbe1c99aa16ea0f5172814f9",
+          "source": "hop_right_v2_14.png"
         },
         {
           "frame": 14,
-          "bbox": [
-            60,
-            53,
-            326,
-            386
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "30c4750ab616123de247f85871f768a508221a5bd1cd2ec3bddaf040a3414692",
-          "source": "mojo_carrot_hopwalk_r_15.png",
-          "source_file_sha256": "29e9723fa2711a1c0741a75178f71d9d42c41f82ffd2a1f0005bb9d12fca172d"
+          "sha256": "1833fb5e2c0da5ae9339b98506b023635711c6389cc129a8ee361599ab235951",
+          "source": "hop_right_v2_15.png"
         },
         {
           "frame": 15,
-          "bbox": [
-            60,
-            53,
-            325,
-            389
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "007e8fe643bfff7fc5c955473949e9ed3368ce2fa607a8b57a39cd29b5fd1310",
-          "source": "mojo_carrot_hopwalk_r_16.png",
-          "source_file_sha256": "3fb98cfe3a15ca180874f5bd5a8a83144d9a982403d17401811505efab8cdc91"
+          "sha256": "83e4e202c12fe1276f0939571373548ff35895b8a7a1fa9b20e09affb443be53",
+          "source": "hop_right_v2_16.png"
         },
         {
           "frame": 16,
-          "bbox": [
-            61,
-            57,
-            324,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "118bc85974bdf81c8e13f6ccc575c14de7b805edb4afd6379f14797d43a88d7e",
-          "source": "mojo_carrot_hopwalk_r_17.png",
-          "source_file_sha256": "b0cb77d2e28a05f6a34de1ed3640428c028e28f48aa4bc2833f79b69fd813a9e"
+          "sha256": "0e4c223f34cac0868fff0a3af8d5347bc1826f62deec8e874ab631f59a60f91c",
+          "source": "hop_right_v2_17.png"
         },
         {
           "frame": 17,
-          "bbox": [
-            60,
-            64,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "c37cd2a692ee439fb5023ee2ff56b74a3c5f352de59023d9d0909148416181d0",
-          "source": "mojo_carrot_hopwalk_r_18.png",
-          "source_file_sha256": "17ad74b94792a4e38943312494c46d9348ae0e8349955b5a3dab8869c0c2538f"
+          "sha256": "ad6310af196db46827ba06983c0d4a4761cb5c7c6c7a8ba0e43a8dea38b0efa9",
+          "source": "hop_right_v2_18.png"
         },
         {
           "frame": 18,
-          "bbox": [
-            56,
-            76,
-            329,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "98d0653d0b6b6d756485c389a56156ff07fc98ed4292268c734f9cfc81b1cef2",
-          "source": "mojo_carrot_hopwalk_r_19.png",
-          "source_file_sha256": "94f0b5a86d40b993c7027f305bdc2fe7c6d5f4be1300de942afa82117572751c"
+          "sha256": "b32b4104cb50a9e1a6c7d90ad7b19db61337fd3447d64029c759f7e589504600",
+          "source": "hop_right_v2_19.png"
         },
         {
           "frame": 19,
-          "bbox": [
-            59,
-            63,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "640611ea9f6fce2e7a89abd62e986f5d37a174a6df80e3c5c55df1810b4fbbed",
-          "source": "mojo_carrot_hopwalk_r_20.png",
-          "source_file_sha256": "1565b0ea4f99b39b6c99566d25fafbdf4e0059d6cdb1b7a96b5b9147949e0193"
+          "sha256": "c9bd7df634a032688af83fb3ca8380974c066ce1c0474315bed0b7fea20d1fe4",
+          "source": "hop_right_v2_20.png"
         },
         {
           "frame": 20,
-          "bbox": [
-            60,
-            61,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "75b14d082792ea6b7cb325507e0cb77c40bfce712567b0cb565e6c39f566f330",
-          "source": "mojo_carrot_hopwalk_r_21.png",
-          "source_file_sha256": "b2fb2623cdd20bd5ed1e3a8eeb863435a65f1e6adb8dea5d0f33c154ca37c555"
+          "sha256": "02e12249086d96d593989873ae6ac218ce0addbaf7647b7e462446a21b70acb2",
+          "source": "hop_right_v2_21.png"
         },
         {
           "frame": 21,
-          "bbox": [
-            60,
-            60,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "d1d7ae94081487897378982ef837fe8b6c51527ddaab5085e490cf30f9f724fe",
-          "source": "mojo_carrot_hopwalk_r_22.png",
-          "source_file_sha256": "decdeccb08017486cecc80b4a50b9412b80c46508ee70650d83a90fe02690d71"
+          "sha256": "6c3c2b42416e777192d2186b03d45a2401d63c260abf6eab18e73ef41528f775",
+          "source": "hop_right_v2_22.png"
         },
         {
           "frame": 22,
-          "bbox": [
-            60,
-            59,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "f4d67f7fddfbf280a8d7e7e7e97fbccbbd1873613a9f08da29e36a04208b4e13",
-          "source": "mojo_carrot_hopwalk_r_23.png",
-          "source_file_sha256": "309fd384b94661e535a9e08c99f19d31b6da217e425f0d6cf441363280b5905a"
+          "sha256": "c79a1be720438d94aac2f445818306ea9a5cae87f174c0fa01a3745f11bdb3e5",
+          "source": "hop_right_v2_23.png"
         },
         {
           "frame": 23,
-          "bbox": [
-            60,
-            58,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "3a4152a78fdbaaad2be05324bee2a42411eea46d482106b69d51fccda90e896c",
-          "source": "mojo_carrot_hopwalk_r_24.png",
-          "source_file_sha256": "82b41ab10412bb7959d26cd00d07cb1732f1e859322c56126bbf899c9414d894"
+          "sha256": "d7f57f639e422853046350f2152a442b07351050070ba8f6ab8aa2f0b8f28ab7",
+          "source": "hop_right_v2_24.png"
+        },
+        {
+          "frame": 24,
+          "sha256": "2fac9929a550dc3d80908a552d85d300862864f60127e7d191a215fda2bb32ce",
+          "source": "hop_right_v2_25.png"
+        },
+        {
+          "frame": 25,
+          "sha256": "b4a57edc1a375e9655f9a4641a6fdfd894d7cb0e96a01243dc24831979210519",
+          "source": "hop_right_v2_26.png"
+        },
+        {
+          "frame": 26,
+          "sha256": "15c2c7cdbf94604efc58b38b1cda5585c703dca839672226d7bb4947b80e395a",
+          "source": "hop_right_v2_27.png"
+        },
+        {
+          "frame": 27,
+          "sha256": "cb7dea3d465bae4aca703726da591d73767a0a73835d80d016f557501ca7fbf4",
+          "source": "hop_right_v2_28.png"
+        },
+        {
+          "frame": 28,
+          "sha256": "cc98531884c2f35775aaf009de0c2f5537b128a40ff4c0dc6c3a5e0dca883738",
+          "source": "hop_right_v2_29.png"
+        },
+        {
+          "frame": 29,
+          "sha256": "5b5d9d0b18940d05b86757085fc41d79da38b29a0b72a0d22cd51a107f057fdc",
+          "source": "hop_right_v2_30.png"
+        },
+        {
+          "frame": 30,
+          "sha256": "ed0c8d1aee356e8feef6c4f61dad0b897677e1d8c22d4207d8e32eae62d2d5c3",
+          "source": "hop_right_v2_31.png"
+        },
+        {
+          "frame": 31,
+          "sha256": "a0d017b4f5166380cf4e8abf8ff0c9859d5514fbd41e4748a68c8e639eccf8e7",
+          "source": "hop_right_v2_32.png"
+        },
+        {
+          "frame": 32,
+          "sha256": "74135900db9bc5a11c74e5b9043981c8db7ca9bd94f5f64df97ffb6e061dfd16",
+          "source": "hop_right_v2_33.png"
+        },
+        {
+          "frame": 33,
+          "sha256": "678bf20ab5f4faa2906f85818edb755580085e4c997652cf023cb6d2cc304249",
+          "source": "hop_right_v2_34.png"
+        },
+        {
+          "frame": 34,
+          "sha256": "f8f213ce6219361558b46911a47512379b7bfc430aeaf5f83c1c1ecb6edd600b",
+          "source": "hop_right_v2_35.png"
+        },
+        {
+          "frame": 35,
+          "sha256": "f476166344cb40adc4562bef866dc0deb52bbc91d808f1e4eb41beefb25ffac1",
+          "source": "hop_right_v2_36.png"
+        },
+        {
+          "frame": 36,
+          "sha256": "5589e188736b0695a88d03792564fb73a0ec8afa85d9317187e907f3d82df731",
+          "source": "hop_right_v2_37.png"
+        },
+        {
+          "frame": 37,
+          "sha256": "13473204375d9bea85809f364a6c8d0f8494729d1dd55fb2831269c629601129",
+          "source": "hop_right_v2_38.png"
+        },
+        {
+          "frame": 38,
+          "sha256": "82b77805f17d56b6ad622292ac321772b1eab9bbd43c4ea3facdacfcdacd3c4f",
+          "source": "hop_right_v2_39.png"
+        },
+        {
+          "frame": 39,
+          "sha256": "453a6c60785af778ddc40ab17afb667877e80dd1939eb6bd59dcaee9fb2fe429",
+          "source": "hop_right_v2_40.png"
+        },
+        {
+          "frame": 40,
+          "sha256": "3e31a1676bfb9fb76d8099cdeb83699241129205b14e0278beae77c342bd17f3",
+          "source": "hop_right_v2_41.png"
+        },
+        {
+          "frame": 41,
+          "sha256": "93ebd8b49653f77707d67747e68f9da8dcd5166f1272ad05dcb5c84112cc65f9",
+          "source": "hop_right_v2_42.png"
+        },
+        {
+          "frame": 42,
+          "sha256": "d75768c1510e4241d2da3897b1977abedc91acff47d5d4a6176c879b3c00d53e",
+          "source": "hop_right_v2_43.png"
+        },
+        {
+          "frame": 43,
+          "sha256": "5c6d739ee316c8711f6d243c84754f58440c8b47daff99f67120a05f5cb9f99c",
+          "source": "hop_right_v2_44.png"
+        },
+        {
+          "frame": 44,
+          "sha256": "b2310f6199700f8a0253a87214ea55d258466ed7b12a20406882fb14a62f6390",
+          "source": "hop_right_v2_45.png"
+        },
+        {
+          "frame": 45,
+          "sha256": "86c898d2b1b09e955ff194878c1d2265376dbb09b024e8b5ec00893e101ac79f",
+          "source": "hop_right_v2_46.png"
+        },
+        {
+          "frame": 46,
+          "sha256": "15ed7d55befb01a3b5ab4bbbc6f8ebf84c75168c8a0da66963e18bde0744c1b7",
+          "source": "hop_right_v2_47.png"
+        },
+        {
+          "frame": 47,
+          "sha256": "8c3b64d4435152c5fab45c9fda36878bc8143fc7ae848e18e0626cc2acb16ce7",
+          "source": "hop_right_v2_48.png"
         }
       ]
     },
     {
       "id": "hop_left",
-      "count": 24,
-      "unique_frames": 24,
-      "max_hole_px": 0,
-      "max_inner_soft_px": 0,
-      "first_equals_last": false,
+      "count": 48,
+      "unique_frames": 47,
+      "alpha_mode": "straight",
       "frames": [
         {
           "frame": 0,
-          "bbox": [
-            60,
-            59,
-            324,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "495e710c1e920425371e57ebda8195d405826e8e12734183f76a75ba78f09022",
-          "source": "mojo_carrot_hopwalk_l_01.png",
-          "source_file_sha256": "dfc3664c0cc3b304095fa61e52ff75496e9ed8ce9e37a4d516d49bb7cc0616ca"
+          "sha256": "8c3b64d4435152c5fab45c9fda36878bc8143fc7ae848e18e0626cc2acb16ce7",
+          "source": "hop_left_v2_01.png"
         },
         {
           "frame": 1,
-          "bbox": [
-            60,
-            61,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "28983584cd2bdb78cfe929620f4627963787df80e5468ecbe82f529a540eff6e",
-          "source": "mojo_carrot_hopwalk_l_02.png",
-          "source_file_sha256": "d19f25c5a34703c2c27765f991739f75a871bbe05f163071a2f7405e7c4359b8"
+          "sha256": "8a0a2cba912a2d62c3c029c5ffc85f1e44c9aede65f16417978e04e5bca9752a",
+          "source": "hop_left_v2_02.png"
         },
         {
           "frame": 2,
-          "bbox": [
-            59,
-            67,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "1e92fa36b7ac44b486eca35d627a2549b012368e70b795538094b7cabfd3bead",
-          "source": "mojo_carrot_hopwalk_l_03.png",
-          "source_file_sha256": "58b967363aaf434f1140878b7fa7dd7aa8594c6fa38baca475a5f6fe6684d8bb"
+          "sha256": "94dbd1935ac0d0c0f4d502ad7cc384cf8bb42c03f1ffd5dfaf6437088abae36b",
+          "source": "hop_left_v2_03.png"
         },
         {
           "frame": 3,
-          "bbox": [
-            57,
-            76,
-            328,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "fef47dc81ebfdd469b70deb1220cb585c192511ce63021ee1756f8e7b811fb4d",
-          "source": "mojo_carrot_hopwalk_l_04.png",
-          "source_file_sha256": "bb39664cc359e5452c1800f8070818d549da50e27592a0dc269847f9f958e921"
+          "sha256": "bc7921606a593c77e98d62283b56e3ba80ab5de175270bfdb0446031b91fc78c",
+          "source": "hop_left_v2_04.png"
         },
         {
           "frame": 4,
-          "bbox": [
-            60,
-            59,
-            324,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "b5a53795487ca6972ea42c1b2b5178bf183a3853e56df7684aa6e6cec62bd8e9",
-          "source": "mojo_carrot_hopwalk_l_05.png",
-          "source_file_sha256": "35d0fd037680de92d97ec7357841e80be3ce3c7ea05e668f4cf188d11688514c"
+          "sha256": "f4f5a1acfcbe0ce20da50fb6f74668f686b562a0058d9e62b1c9c7b74972e69c",
+          "source": "hop_left_v2_05.png"
         },
         {
           "frame": 5,
-          "bbox": [
-            61,
-            55,
-            323,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "f69c7da5ed2e691774ae7238fe89becd7ebb3e2cd8c3f72fbf3f57548e67adae",
-          "source": "mojo_carrot_hopwalk_l_06.png",
-          "source_file_sha256": "5c46370bb132163ea13fbee2661d123b5ad848f8f0c82d305c0a50d859d2ca0c"
+          "sha256": "a1aa518f63d558514fc8b43c5d2b0e9bcb187fd505d31167006c8ee94a106133",
+          "source": "hop_left_v2_06.png"
         },
         {
           "frame": 6,
-          "bbox": [
-            61,
-            53,
-            324,
-            390
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "eb0365fe9bad1fce2e4a58c9e90f6d1143907772561fd53cba5cc4db1d97b0ab",
-          "source": "mojo_carrot_hopwalk_l_07.png",
-          "source_file_sha256": "f94c8f6955d7cb3c3b2f6cad8e6319c5bd2f9b845a0fdf0041939d3e2ac3e185"
+          "sha256": "0aa6a77af19bae762ac0e5f8f186427a88d612ae6ca1650a4f41eb4d5bdb6534",
+          "source": "hop_left_v2_07.png"
         },
         {
           "frame": 7,
-          "bbox": [
-            60,
-            53,
-            324,
-            386
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "37f0b8a4f7948ce7aeeb201215d549a6bd054b06ae8e1666ad2f3eb795fbf4d9",
-          "source": "mojo_carrot_hopwalk_l_08.png",
-          "source_file_sha256": "5eb54d360fab8bdd062acac2dc34200ef8dc7ef88630b7ff8c24a95691c9ea01"
+          "sha256": "67123f093b51b1fbd1426c0c9d10765a7e6efd26976f41ccb8a27a6e6c1b4321",
+          "source": "hop_left_v2_08.png"
         },
         {
           "frame": 8,
-          "bbox": [
-            60,
-            53,
-            325,
-            384
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "b28b12cd4939e897e637b92f9d9befccdde6d47b6e090632ebb537edbd5e27d9",
-          "source": "mojo_carrot_hopwalk_l_09.png",
-          "source_file_sha256": "6c834bd88dd541620980cbe1d47242f9a7f85bdd21fba7e3e13de8d37656c798"
+          "sha256": "01bd8286ef9ae81f37045dfb50105c18a2b0c3ce82d5ac48cb1ef4f1d70c59c1",
+          "source": "hop_left_v2_09.png"
         },
         {
           "frame": 9,
-          "bbox": [
-            59,
-            53,
-            325,
-            382
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "a5409dbb64b67e9d546206ce26edfa53312136553dbf14a26da32a533cbbcc77",
-          "source": "mojo_carrot_hopwalk_l_10.png",
-          "source_file_sha256": "059d0d819bfdb1bc6b37adc5139d9290da9b9ae6904dcf978c0bcbf1df71be85"
+          "sha256": "64f9b1b4631771fb6f39ac42176bcfb6e163b0d8e071ad2473823c0a42bc36d8",
+          "source": "hop_left_v2_10.png"
         },
         {
           "frame": 10,
-          "bbox": [
-            59,
-            53,
-            325,
-            381
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "87224058dc5012b606ce9d83e1cb1c554c939b76825cbdceaa343efa1cb819e5",
-          "source": "mojo_carrot_hopwalk_l_11.png",
-          "source_file_sha256": "a6430b724dab69c83d23ca32de1b97b8a4c1af7109a2e6a78c8af36d162e97bc"
+          "sha256": "81f48c212b3f75fba968b1e55069df9f6208ca08e2def85f91cd987cd3bed010",
+          "source": "hop_left_v2_11.png"
         },
         {
           "frame": 11,
-          "bbox": [
-            59,
-            53,
-            326,
-            381
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "5fc94123e805355491dad66887e1c3527be457cb98bacfe1f87600f7fa3c321f",
-          "source": "mojo_carrot_hopwalk_l_12.png",
-          "source_file_sha256": "927673063ae0419a7aaee0cab5a154a00a9d5b922d1852ecd052328250c72b81"
+          "sha256": "de1147c76772100403d11ce2268198201a6e1003f7e6a3cc9b083bfde165f4f0",
+          "source": "hop_left_v2_12.png"
         },
         {
           "frame": 12,
-          "bbox": [
-            59,
-            52,
-            326,
-            382
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "ceb59b4a5124d961778ccac537caceec0200412e28a9b862bcb740f852fd6b94",
-          "source": "mojo_carrot_hopwalk_l_13.png",
-          "source_file_sha256": "0805c5405b1357bfd7c7723c51a4bec33e9342cd9802238f621575ba1a984438"
+          "sha256": "026a4eb861940420ee4a906b85a452dbccc96e5dd79b52a89aa44a801db7211b",
+          "source": "hop_left_v2_13.png"
         },
         {
           "frame": 13,
-          "bbox": [
-            59,
-            52,
-            325,
-            383
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "542ef1637bd08fc56fc2310051a3a3e25ff1c657c1668016c786ebc7aff98f4d",
-          "source": "mojo_carrot_hopwalk_l_14.png",
-          "source_file_sha256": "13cd92424567856f3f28a65a6f879b3bca399284dae7cf449baf1cc14dabd5cc"
+          "sha256": "4ab02ba611586d69c82b902f332ddc28149d7b87dabea08676461ab6dac64074",
+          "source": "hop_left_v2_14.png"
         },
         {
           "frame": 14,
-          "bbox": [
-            59,
-            54,
-            325,
-            386
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "2e9ae778c5f87182ec0e7cb905e0343ac58bc3b1ab41d2785fee402f725d202e",
-          "source": "mojo_carrot_hopwalk_l_15.png",
-          "source_file_sha256": "e198920ec51cb08fe7edaa5b6578c147d72cdd041fed3e7a65ff171a5463cd2d"
+          "sha256": "91101d7261a86a74be8b114430c56d6e6028642b5e0d2943e24f19dc3293c9df",
+          "source": "hop_left_v2_15.png"
         },
         {
           "frame": 15,
-          "bbox": [
-            60,
-            54,
-            325,
-            389
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "0bc991791e1aa5cea4ea459853bed2bdce5c1de54d2f527f2812e73989ae6ca1",
-          "source": "mojo_carrot_hopwalk_l_16.png",
-          "source_file_sha256": "f4dee75c89d5f8b5ee2247332b301f4bf16c3a42459f68b2725069ca5f81e4f4"
+          "sha256": "dbaf71046907aa66a6d8d7d62fba3117ca9333f500ca0c01e982f38187037e87",
+          "source": "hop_left_v2_16.png"
         },
         {
           "frame": 16,
-          "bbox": [
-            61,
-            58,
-            324,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "b4e3e74d8e7ad1e8bd0e1596169452b4f0424415b213e033aa6a0eb4690c112c",
-          "source": "mojo_carrot_hopwalk_l_17.png",
-          "source_file_sha256": "8b06ae23db3746eddba9179abc1daca99d7d995cd21cdbf2bbf8f699cce64792"
+          "sha256": "ae735f6b7a125c4a5240457085fb3bf8577bac47f14c6d44c32a51e87727e8fe",
+          "source": "hop_left_v2_17.png"
         },
         {
           "frame": 17,
-          "bbox": [
-            59,
-            66,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "78885d170ffb5d0b932a46c97624de82d666ce03b9b7c389b6b26adaa1c62690",
-          "source": "mojo_carrot_hopwalk_l_18.png",
-          "source_file_sha256": "72dc17dc8dacfd2560f7248242d2dc9946d992f6f2ac652434bae17db8cc075a"
+          "sha256": "8c31024e7accdec8c7feb6b69be9c7c2b3d35afbd25d1006f91be7327f1b619e",
+          "source": "hop_left_v2_18.png"
         },
         {
           "frame": 18,
-          "bbox": [
-            56,
-            77,
-            329,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "8c842dbbad5c81003df59ab18254ee804dd4e46d1dc20764cfdaacb5cde6c5cb",
-          "source": "mojo_carrot_hopwalk_l_19.png",
-          "source_file_sha256": "a7622d9863b4072033119817b3dd1bb00cba120921a45153966367e91499f7c7"
+          "sha256": "53ee926b79c5b3a32ff1798e851d31395ef76c04c1365ff77c671229014662b1",
+          "source": "hop_left_v2_19.png"
         },
         {
           "frame": 19,
-          "bbox": [
-            59,
-            64,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "4442b0972db28b3702d5418cefe878de0bd1534351cd3e8868267b71ede825ba",
-          "source": "mojo_carrot_hopwalk_l_20.png",
-          "source_file_sha256": "874d51050f03f0901e62904a45f57efee68a7d66b8cd15e24ad7c972cad7c879"
+          "sha256": "d82e6733abb5448a7992714076f6d73db8657da04daeda306d7fd2eabc9430c0",
+          "source": "hop_left_v2_20.png"
         },
         {
           "frame": 20,
-          "bbox": [
-            60,
-            62,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "185d0f2bf3f52da4047b7f70329e65f247573e6bc452814e2d190494a48b32dc",
-          "source": "mojo_carrot_hopwalk_l_21.png",
-          "source_file_sha256": "43f944824eaf9448a75997ddaf13fa538ca462f70f25d67dc511b8fdcb2b410e"
+          "sha256": "3d6262216c11c70d62b859c73f9f3f4c5d2b93601f391c8739195c173a47c5e0",
+          "source": "hop_left_v2_21.png"
         },
         {
           "frame": 21,
-          "bbox": [
-            60,
-            62,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "46178e57084e8be6b4af0f4038da51fe2fa9763ffdbb0c632e9687fba7a2ec01",
-          "source": "mojo_carrot_hopwalk_l_22.png",
-          "source_file_sha256": "35305d70cab3bded7343205714c9115d5e40e67208573213da8dc4116765985a"
+          "sha256": "ba11d6c14c981b17a05957912d2d4e62d2bf026705bf127016fa7f7cc5c19198",
+          "source": "hop_left_v2_22.png"
         },
         {
           "frame": 22,
-          "bbox": [
-            60,
-            61,
-            325,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "6984b7cf64226639b0f1859d7bbdbb797106d2758a112274bf1bcaa128d2dc84",
-          "source": "mojo_carrot_hopwalk_l_23.png",
-          "source_file_sha256": "9d2d588c9185950b0092b899c8b394a190b8b6a25a9d574f9035b099b58f1478"
+          "sha256": "970aed94e1dacdff9bfe0b8a703a964bbaceff71065d0bdc707cd1b80b36948d",
+          "source": "hop_left_v2_23.png"
         },
         {
           "frame": 23,
-          "bbox": [
-            60,
-            60,
-            324,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "4bfb20be8b8cc721b1f4df4fc987fd5d18833f21ebc28007be5d1866a53ad00d",
-          "source": "mojo_carrot_hopwalk_l_24.png",
-          "source_file_sha256": "3490a4be9029c5237196d401dcb35861cb479dc4b53db3623277c82c0af36aae"
+          "sha256": "9b968ce5a77ea93d44ac6c406a2b694bbc133d4e26d9ac61182b5270796f3584",
+          "source": "hop_left_v2_24.png"
+        },
+        {
+          "frame": 24,
+          "sha256": "a970ba825a01966694a9600bd0b670e4bd4a13d818b7195e4705f8395985b83b",
+          "source": "hop_left_v2_25.png"
+        },
+        {
+          "frame": 25,
+          "sha256": "bdd3be2655049a7ffa07e84083f51cce0372db8152275f8c0b50a188f3a5efd8",
+          "source": "hop_left_v2_26.png"
+        },
+        {
+          "frame": 26,
+          "sha256": "bb145f070fbdf6793d4a2366cab54ea85e54331e8709423f0113d5cb0b7dd080",
+          "source": "hop_left_v2_27.png"
+        },
+        {
+          "frame": 27,
+          "sha256": "0f32921cca66a2e542d7b9cd6c2214674cf2920bb5650236dff0019701506b6a",
+          "source": "hop_left_v2_28.png"
+        },
+        {
+          "frame": 28,
+          "sha256": "0a783b3330c7507d878f98bf580d518c1626606a13b05f5e3770321cf43e2c22",
+          "source": "hop_left_v2_29.png"
+        },
+        {
+          "frame": 29,
+          "sha256": "076795bc33f599d4a5705df3457f2e9fd3cef461cccc86d4f41eb19878a18833",
+          "source": "hop_left_v2_30.png"
+        },
+        {
+          "frame": 30,
+          "sha256": "cbaa028c30fc826447653f0219d5cbddf3cf8eb583463606fd1be121884cfd7c",
+          "source": "hop_left_v2_31.png"
+        },
+        {
+          "frame": 31,
+          "sha256": "df93980a1a99c23974f699d4500297af2be52b250a0e34764e9fa98c0274c950",
+          "source": "hop_left_v2_32.png"
+        },
+        {
+          "frame": 32,
+          "sha256": "fd8ed343837fe25d3304f25b06378650129edf6eba49a155a139aa2622e96d7e",
+          "source": "hop_left_v2_33.png"
+        },
+        {
+          "frame": 33,
+          "sha256": "637fcb3f96657805286cb573464bef677b8a39388091eaf7e60ee8c3ded28866",
+          "source": "hop_left_v2_34.png"
+        },
+        {
+          "frame": 34,
+          "sha256": "9eb2895b108bc7d6a7b0cf033e1d5d5a0b11a4ef5e5bec9ff212783be3740eeb",
+          "source": "hop_left_v2_35.png"
+        },
+        {
+          "frame": 35,
+          "sha256": "5d8fa99c8fdd93cc0eeaf3562b9297e645f20f141b3eee0685cbbe5e6ef48b85",
+          "source": "hop_left_v2_36.png"
+        },
+        {
+          "frame": 36,
+          "sha256": "96ec97df2df5b53c7cf1c7c652199446cb7ddeb0ec8a09945e55fdb5fe4b8f50",
+          "source": "hop_left_v2_37.png"
+        },
+        {
+          "frame": 37,
+          "sha256": "27699dee87b253b1dc93b3489b2d1ae2a36911082fc1152b71aeb6a2a82c8657",
+          "source": "hop_left_v2_38.png"
+        },
+        {
+          "frame": 38,
+          "sha256": "cc80fb46deab9198356f1dcf412f5ed89092842895c62363c43b82666b4bfe33",
+          "source": "hop_left_v2_39.png"
+        },
+        {
+          "frame": 39,
+          "sha256": "7b835745bb817230184c4a4a0f9228f4aa10ae8750c8832cac12b281debba97c",
+          "source": "hop_left_v2_40.png"
+        },
+        {
+          "frame": 40,
+          "sha256": "1c1ed9324eec00074b67367d6d1a515390635ed29aabcaac2b3149ec9c7451e5",
+          "source": "hop_left_v2_41.png"
+        },
+        {
+          "frame": 41,
+          "sha256": "9fb1ecebc83baf198e8311701cd63b937ce949f21bafb26f3c641d7e7c7779ac",
+          "source": "hop_left_v2_42.png"
+        },
+        {
+          "frame": 42,
+          "sha256": "4a4111164b8677771b54f78886a830d9be46ea0fcf5ec844a8c2b3b64f6cb6f3",
+          "source": "hop_left_v2_43.png"
+        },
+        {
+          "frame": 43,
+          "sha256": "5fa55c6c6cb302db61b3c54627beb61b3b0a28a59baa13447099c9743743dff0",
+          "source": "hop_left_v2_44.png"
+        },
+        {
+          "frame": 44,
+          "sha256": "7cf337b93f0fc60152d8cf19abb2be332a597c4bb5668f921759d033e0727f06",
+          "source": "hop_left_v2_45.png"
+        },
+        {
+          "frame": 45,
+          "sha256": "226440381ed456efdd55cc2322ea968f94535029eeff37d9b855f1c2d1bc3c36",
+          "source": "hop_left_v2_46.png"
+        },
+        {
+          "frame": 46,
+          "sha256": "5a8f7cec88c5d8eff3ea2916efa31f5d28c53ca2a126bbd6f54f3d61afe51b59",
+          "source": "hop_left_v2_47.png"
+        },
+        {
+          "frame": 47,
+          "sha256": "8c3b64d4435152c5fab45c9fda36878bc8143fc7ae848e18e0626cc2acb16ce7",
+          "source": "hop_left_v2_48.png"
         }
       ]
     },
     {
       "id": "gaze",
-      "count": 16,
-      "unique_frames": 16,
-      "max_hole_px": 0,
-      "max_inner_soft_px": 0,
-      "first_equals_last": false,
+      "count": 81,
+      "unique_frames": 81,
+      "alpha_mode": "straight",
       "frames": [
         {
           "frame": 0,
-          "bbox": [
-            58,
-            63,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "f0cba4c921cdfd7356d99833941e5dd580de556c551f9b44a8a3745174738fa5",
-          "source": "mojo_carrot_face_000.png",
-          "source_file_sha256": "7021ca88c05904ee7a18430828933fd710e51f091f19e40b353e3f7a97a27b2d"
+          "sha256": "58eb8cc5bc294b3df6f63a6c083f8d6cc52ce7d9b756279d280cd752d2a6e77c",
+          "source": "mojo_gaze_01_r1c1_x-1.00_y-1.00.png"
         },
         {
           "frame": 1,
-          "bbox": [
-            58,
-            62,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "e475a1f39ea84572e921809f0cd2963e04eeccc6d7779bc849b0b569cea4f9eb",
-          "source": "mojo_carrot_face_022.png",
-          "source_file_sha256": "14a4f56a36a94c6f55263097b130cc2be322758ec691b71554394b094e4c1f24"
+          "sha256": "9ad9510749f9519868519779433ad4e97062da7f402eecd8d8f2797fa510be2a",
+          "source": "mojo_gaze_02_r1c2_x-0.75_y-1.00.png"
         },
         {
           "frame": 2,
-          "bbox": [
-            58,
-            61,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "12cbc1cdfd9e312fc47c135a4763c2d7be66fca89ed5758a4f43355afd3911ae",
-          "source": "mojo_carrot_face_045.png",
-          "source_file_sha256": "4a48176d0b2a153cd3a973037be47d61bceadb25a5db511f6b52af4a58205ba0"
+          "sha256": "688b06fd7612b6ca7f33154a9348979003162b81db9f38acad4304499e207331",
+          "source": "mojo_gaze_03_r1c3_x-0.50_y-1.00.png"
         },
         {
           "frame": 3,
-          "bbox": [
-            58,
-            61,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "d6aa3441b7e1929c7b20ef827f0e02e3f1dd5ed6e27b85028d3db780c6369ec7",
-          "source": "mojo_carrot_face_067.png",
-          "source_file_sha256": "427b3a3fb91ac9dc24081663cc769b18e08b85ef3f23f8be55e7e3f3d0836d89"
+          "sha256": "e2282f710d6d450a036c0608cda674281fe4d117b9dd12510cda3f58d4141122",
+          "source": "mojo_gaze_04_r1c4_x-0.25_y-1.00.png"
         },
         {
           "frame": 4,
-          "bbox": [
-            58,
-            60,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "d5527d2a37dbe4f4091f98ffa042b4e9bc1fa470518a2110aa2240edb1313bb3",
-          "source": "mojo_carrot_face_090.png",
-          "source_file_sha256": "0c88212c4b459e7fe4fbcdc21eb62eb515f46cc3e26e121b631d49f608351763"
+          "sha256": "676d73a90e247dda26c9262d6cfe3c6a73473d0c683b27ce9f6eeb43f30f59e3",
+          "source": "mojo_gaze_05_r1c5_x+0.00_y-1.00.png"
         },
         {
           "frame": 5,
-          "bbox": [
-            58,
-            59,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "51e7c5698f7197ec84ead398b4d09b1ebed55aae62381f29c62cb6e136c02587",
-          "source": "mojo_carrot_face_112.png",
-          "source_file_sha256": "acbb81860f5dc3fbba47ca1a3aaf47a47b6fea4ff1c363cb2c127324629bcd89"
+          "sha256": "14fb20807ca0e55259f945b52c6c86ee73f5f4819942def695ac0b2cea6fc4c8",
+          "source": "mojo_gaze_06_r1c6_x+0.25_y-1.00.png"
         },
         {
           "frame": 6,
-          "bbox": [
-            58,
-            58,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "6de7f628d94e344d030799dac11f5d4d2f71ae592802413836810de1581a54f2",
-          "source": "mojo_carrot_face_135.png",
-          "source_file_sha256": "a180b24da55ddbe879f3446149304546427d22bffd7252e8596c80026c9a4451"
+          "sha256": "3ac86fded903d8b8294dafa7c7f81ddb258b60b884c3fc4e798f7d4890b6a76d",
+          "source": "mojo_gaze_07_r1c7_x+0.50_y-1.00.png"
         },
         {
           "frame": 7,
-          "bbox": [
-            58,
-            58,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "ff0b55d005bf5f5fba0f1a5eae3f8689c273a21fc33856c8e67548ac1ede33f1",
-          "source": "mojo_carrot_face_157.png",
-          "source_file_sha256": "48a7483ef183aabe456d20b693f975fac6804546f8757aa226634edfc6b496fc"
+          "sha256": "2527dee436a51bee82de08c40be3f73fd9bed7f0f278091db918114420044e7e",
+          "source": "mojo_gaze_08_r1c8_x+0.75_y-1.00.png"
         },
         {
           "frame": 8,
-          "bbox": [
-            58,
-            57,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "e9153261efa11ef02da65c263380df0c9702e9241f48f43035b7e16f1a3057b2",
-          "source": "mojo_carrot_face_180.png",
-          "source_file_sha256": "f794a1778fa212785d613cd133da8e6258143d6dc2cb43ec95cb3644c14a79f5"
+          "sha256": "e3459113184806d4b0c45dedb0e07547a27ad3587242113209489139dfcc82a4",
+          "source": "mojo_gaze_09_r1c9_x+1.00_y-1.00.png"
         },
         {
           "frame": 9,
-          "bbox": [
-            58,
-            58,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "836dfd2fc28c3731a3104d0b3752c324de3f5d7516746fe1cfe5f03950a0c8f0",
-          "source": "mojo_carrot_face_202.png",
-          "source_file_sha256": "41e1bab786c260d3c726b2aa96680a15f2965979ffe43429fff888bf5f3bedee"
+          "sha256": "8e9eb376bc74c917ac49ac732fa66e0917796c34d1a85959cf26cbbfaec3d8bc",
+          "source": "mojo_gaze_10_r2c1_x-1.00_y-0.75.png"
         },
         {
           "frame": 10,
-          "bbox": [
-            58,
-            58,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "c50fb61206053e6f0685fcbdeb3d3d5fb100f3331b167a3f196ad2afa5bc416e",
-          "source": "mojo_carrot_face_225.png",
-          "source_file_sha256": "44c0921d983dce554dec83b027ba4418e754aeac008a77d2a6d87865e298d8b3"
+          "sha256": "141f32f7287ed89f8940ff5ba8a5628704c292c9f89bff3b07249fa276db7297",
+          "source": "mojo_gaze_11_r2c2_x-0.75_y-0.75.png"
         },
         {
           "frame": 11,
-          "bbox": [
-            58,
-            59,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "efe425dcab61dbbfe08808f56dd4f9f7f82bc85722a506afd9700da324f8eaba",
-          "source": "mojo_carrot_face_247.png",
-          "source_file_sha256": "d60c80c0769dfed245851f984621caad3dcd5c91e4ba54d0f573051a3ca09131"
+          "sha256": "7caabca791c00051fca3131c1c802276797819b38b869ce2e949e66794b16057",
+          "source": "mojo_gaze_12_r2c3_x-0.50_y-0.75.png"
         },
         {
           "frame": 12,
-          "bbox": [
-            58,
-            60,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "ec32693e3a0e26f1c8ad3797ba68b6a37e8ae0bc7b0eece5d43dafad606d3823",
-          "source": "mojo_carrot_face_270.png",
-          "source_file_sha256": "9ad79cac57e7901b8c54d34b3f6a14506ba33b8c844664a4f03b2d89ac37b207"
+          "sha256": "9ff0b034b3e418888c5d17b2d5ce4fade888c2887fef820b5afe52a981957bb8",
+          "source": "mojo_gaze_13_r2c4_x-0.25_y-0.75.png"
         },
         {
           "frame": 13,
-          "bbox": [
-            58,
-            61,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "a00921c8b721eaa89c276fd33b5d968e11f5562cc3154180db27d073169ac372",
-          "source": "mojo_carrot_face_292.png",
-          "source_file_sha256": "7dece11f6f0bd8c34ca9c257dbf09de70ea96736db48d7dc244a0ff907811820"
+          "sha256": "9571160c00d96998ec08426c0de4d75b6bc65d136c9b55ef01ceddf20ff87c06",
+          "source": "mojo_gaze_14_r2c5_x+0.00_y-0.75.png"
         },
         {
           "frame": 14,
-          "bbox": [
-            58,
-            61,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "5693bd3dd800c183e8a28f91527fccabf0a1a2fb2f5c39a17aee51770d5324eb",
-          "source": "mojo_carrot_face_315.png",
-          "source_file_sha256": "7e2615f4b15aff7918e77414207e49a6090e7ba7276a9ad3b4d00b886ff40b6a"
+          "sha256": "f7ebbcb19468cd08b0ef51eb069c324d545c2746fde3d3a3ad6d838e0b97234b",
+          "source": "mojo_gaze_15_r2c6_x+0.25_y-0.75.png"
         },
         {
           "frame": 15,
-          "bbox": [
-            58,
-            62,
-            326,
-            394
-          ],
-          "transparent_holes_px": 0,
-          "translucent_inner_px": 0,
-          "sha256": "7e03edb36c2f80c55ffd3d7faccc1178ed62fc2a1cccec4cd832c49dff6aaa21",
-          "source": "mojo_carrot_face_337.png",
-          "source_file_sha256": "9e78a4b328ab87f6ec585063ec2e9fd0a8703b224f7bbb3f0b866afb26d2f2e4"
+          "sha256": "96fb23e934a284e5ea4e4578e8a15f5ba0b2b3794a22310a769efe0a884873f2",
+          "source": "mojo_gaze_16_r2c7_x+0.50_y-0.75.png"
+        },
+        {
+          "frame": 16,
+          "sha256": "b2946428701016f38a522238e8316f95a7cd3637b7b1e5f786e703a40ebb91cd",
+          "source": "mojo_gaze_17_r2c8_x+0.75_y-0.75.png"
+        },
+        {
+          "frame": 17,
+          "sha256": "3440ec70f1b0ce33b95c825ca9f5ff3a9f7933d1b292f22ba31e4cded9823850",
+          "source": "mojo_gaze_18_r2c9_x+1.00_y-0.75.png"
+        },
+        {
+          "frame": 18,
+          "sha256": "61d19cf5c5ddc04a61b0332a86ef3f64149e6db69544da013a50cb14058f1953",
+          "source": "mojo_gaze_19_r3c1_x-1.00_y-0.50.png"
+        },
+        {
+          "frame": 19,
+          "sha256": "1ee0d0c87f8ae05b8b98a557a71747d970642373ee057409ba4c1f8f84deea13",
+          "source": "mojo_gaze_20_r3c2_x-0.75_y-0.50.png"
+        },
+        {
+          "frame": 20,
+          "sha256": "732fdbf1b02d3e4e485f9c25304f506382b46da71c3f54cf04576ae44a3c513b",
+          "source": "mojo_gaze_21_r3c3_x-0.50_y-0.50.png"
+        },
+        {
+          "frame": 21,
+          "sha256": "72edce572458b851b382a85dfd44197385432ea2755866567ce408a2d2fce873",
+          "source": "mojo_gaze_22_r3c4_x-0.25_y-0.50.png"
+        },
+        {
+          "frame": 22,
+          "sha256": "bf56f476e942303d90a4956af59e307455f2ab302307bbc070977de2c0322a49",
+          "source": "mojo_gaze_23_r3c5_x+0.00_y-0.50.png"
+        },
+        {
+          "frame": 23,
+          "sha256": "21407d979304452dd6816ea47c12813957b6af51c44226799e99030bdcf7bb79",
+          "source": "mojo_gaze_24_r3c6_x+0.25_y-0.50.png"
+        },
+        {
+          "frame": 24,
+          "sha256": "aefc2fc415394e92435179827c7743b12a954ec39aefb28a418f36ef0cc8ead5",
+          "source": "mojo_gaze_25_r3c7_x+0.50_y-0.50.png"
+        },
+        {
+          "frame": 25,
+          "sha256": "1e2540b4fa50cc1fcd7853b1aef2a9a0910a15a801132500d6c0bb502ca77f20",
+          "source": "mojo_gaze_26_r3c8_x+0.75_y-0.50.png"
+        },
+        {
+          "frame": 26,
+          "sha256": "948f6761d671abd921837314129537daee18f88699c16209b767890898fbcb03",
+          "source": "mojo_gaze_27_r3c9_x+1.00_y-0.50.png"
+        },
+        {
+          "frame": 27,
+          "sha256": "9846ab3af983de8b61b517ef26a9e84054458ad1b9c48717c7b75dc562e56461",
+          "source": "mojo_gaze_28_r4c1_x-1.00_y-0.25.png"
+        },
+        {
+          "frame": 28,
+          "sha256": "844f11d17d4a7d905e67184ff0c680ca881c4302c658a791b957fc80372f135f",
+          "source": "mojo_gaze_29_r4c2_x-0.75_y-0.25.png"
+        },
+        {
+          "frame": 29,
+          "sha256": "91a2e98fec07274d2b1a54366ce5ac8ba1b90668d1026a810505435cb9fad47c",
+          "source": "mojo_gaze_30_r4c3_x-0.50_y-0.25.png"
+        },
+        {
+          "frame": 30,
+          "sha256": "a8bc1fb528336fa4bdff866787c3d4cf3a81956f65d118b03bdd477f7c172709",
+          "source": "mojo_gaze_31_r4c4_x-0.25_y-0.25.png"
+        },
+        {
+          "frame": 31,
+          "sha256": "277c4c41e0dec5d504ba9f7f91b12f99a8a781c9a47d018c2e7312a6943cdfcd",
+          "source": "mojo_gaze_32_r4c5_x+0.00_y-0.25.png"
+        },
+        {
+          "frame": 32,
+          "sha256": "214e1b37da60dcf5dba42cafbdb3b4367b1aead926c790c6e4d5abe43e6afc30",
+          "source": "mojo_gaze_33_r4c6_x+0.25_y-0.25.png"
+        },
+        {
+          "frame": 33,
+          "sha256": "063d69bc6e496442185e4efee3092b52dae31fcef0effb77af7cf4fd7c090ca6",
+          "source": "mojo_gaze_34_r4c7_x+0.50_y-0.25.png"
+        },
+        {
+          "frame": 34,
+          "sha256": "e32c948577f7a95e51f4bbc3fdc736440288cd6ed2a44cf64de724d381cd9db5",
+          "source": "mojo_gaze_35_r4c8_x+0.75_y-0.25.png"
+        },
+        {
+          "frame": 35,
+          "sha256": "f98a1d7923d47cc3406cf5fcf257ab40758ebe40aa3be68bc2090ef4fdfd0752",
+          "source": "mojo_gaze_36_r4c9_x+1.00_y-0.25.png"
+        },
+        {
+          "frame": 36,
+          "sha256": "725bcc744bba8b53270b15a8f44e0ebbb6daf5893319cf7589f218e909c665b0",
+          "source": "mojo_gaze_37_r5c1_x-1.00_y+0.00.png"
+        },
+        {
+          "frame": 37,
+          "sha256": "d483dc077ec0a584211454cb7eb9d21bff93737d7f47f815a1100c7e62eca1d3",
+          "source": "mojo_gaze_38_r5c2_x-0.75_y+0.00.png"
+        },
+        {
+          "frame": 38,
+          "sha256": "483b7374b2244c5ec296ec0140c9ec7541e68bedd7c9e402273a846b41d88b2c",
+          "source": "mojo_gaze_39_r5c3_x-0.50_y+0.00.png"
+        },
+        {
+          "frame": 39,
+          "sha256": "fbe383aae94c804fd1a86af2a0a2f83b63876cd22e3bfb730409802a91ce06b9",
+          "source": "mojo_gaze_40_r5c4_x-0.25_y+0.00.png"
+        },
+        {
+          "frame": 40,
+          "sha256": "8c3b64d4435152c5fab45c9fda36878bc8143fc7ae848e18e0626cc2acb16ce7",
+          "source": "mojo_gaze_41_r5c5_x+0.00_y+0.00.png"
+        },
+        {
+          "frame": 41,
+          "sha256": "b04808c16bacc9fd0dc540454c29768aac1e2fdf97fd4bd862f234a2095536c7",
+          "source": "mojo_gaze_42_r5c6_x+0.25_y+0.00.png"
+        },
+        {
+          "frame": 42,
+          "sha256": "de140bf2a010b7c958cdfe29a25005a0029e97052f46b4c2c27308efced7fb83",
+          "source": "mojo_gaze_43_r5c7_x+0.50_y+0.00.png"
+        },
+        {
+          "frame": 43,
+          "sha256": "092b0abad5f5d678d0179744086205891de30fd6a469f42fbede338c66094f63",
+          "source": "mojo_gaze_44_r5c8_x+0.75_y+0.00.png"
+        },
+        {
+          "frame": 44,
+          "sha256": "b9c39a4674bb2880d9806b24af78a61fb281c78b3f08ab40944a78c4e01b8a2d",
+          "source": "mojo_gaze_45_r5c9_x+1.00_y+0.00.png"
+        },
+        {
+          "frame": 45,
+          "sha256": "4fa54f47637daba67ea81cac07a14c818631fc91c0ad7c017bf31cad04d15589",
+          "source": "mojo_gaze_46_r6c1_x-1.00_y+0.25.png"
+        },
+        {
+          "frame": 46,
+          "sha256": "3a5028ae6f770d24a8a77d0ec604b0c704c94560f4316520351b34f9a8ef4337",
+          "source": "mojo_gaze_47_r6c2_x-0.75_y+0.25.png"
+        },
+        {
+          "frame": 47,
+          "sha256": "cf07ba95c069bb05b1992acf913dfd65a10891f3c18c909bea11867dc6210eb5",
+          "source": "mojo_gaze_48_r6c3_x-0.50_y+0.25.png"
+        },
+        {
+          "frame": 48,
+          "sha256": "af7b387f00d73640724d092959f84fe050095d998275315a7cfa5c96b5c5e9c0",
+          "source": "mojo_gaze_49_r6c4_x-0.25_y+0.25.png"
+        },
+        {
+          "frame": 49,
+          "sha256": "c5550a5dcb29acf0fafe920dd1eeeebec8004beb7bde4c4c160aa38c1bf763bd",
+          "source": "mojo_gaze_50_r6c5_x+0.00_y+0.25.png"
+        },
+        {
+          "frame": 50,
+          "sha256": "ccc022044b97156542a6d9bea7e2c65d6d2543531a3eecc606c3c6559a9b8cf0",
+          "source": "mojo_gaze_51_r6c6_x+0.25_y+0.25.png"
+        },
+        {
+          "frame": 51,
+          "sha256": "0183a8d3cc6d5998c177e27d8512ad46c15a9617fc5c14cfe0f29fd58bcf1aaa",
+          "source": "mojo_gaze_52_r6c7_x+0.50_y+0.25.png"
+        },
+        {
+          "frame": 52,
+          "sha256": "bd91b1a734279ea43500913ca8b5b0d867b71c944d00578a0060403d8931dbcc",
+          "source": "mojo_gaze_53_r6c8_x+0.75_y+0.25.png"
+        },
+        {
+          "frame": 53,
+          "sha256": "7c34e6e2e2f4f1ef359a9e3e9be5a8e82562900a7599128fe3548baf3e7821fd",
+          "source": "mojo_gaze_54_r6c9_x+1.00_y+0.25.png"
+        },
+        {
+          "frame": 54,
+          "sha256": "1e693ea151a6c18561612ad4d48f5163b87c5a7cc25916d5b527664606679b6c",
+          "source": "mojo_gaze_55_r7c1_x-1.00_y+0.50.png"
+        },
+        {
+          "frame": 55,
+          "sha256": "f7fdcea89347a0e102f007db0d9ed7782f20eeca530fe0c2dbdf3af4679356d3",
+          "source": "mojo_gaze_56_r7c2_x-0.75_y+0.50.png"
+        },
+        {
+          "frame": 56,
+          "sha256": "f0f517b7e3719a697e70ff48e5c6dfab815058f7c07f4281156545782e10af75",
+          "source": "mojo_gaze_57_r7c3_x-0.50_y+0.50.png"
+        },
+        {
+          "frame": 57,
+          "sha256": "8e33f4586ac953b4cecd85ce5b8be2e0f427ed12b134ec72788dced6e170ed66",
+          "source": "mojo_gaze_58_r7c4_x-0.25_y+0.50.png"
+        },
+        {
+          "frame": 58,
+          "sha256": "2428523e434810decddf912501d561a057c72565666ad2dc91867b55a9713415",
+          "source": "mojo_gaze_59_r7c5_x+0.00_y+0.50.png"
+        },
+        {
+          "frame": 59,
+          "sha256": "1260536ab52bad0675c536ee9bb0a662752ebfcf4dc605aa0f9ae1706541b4e1",
+          "source": "mojo_gaze_60_r7c6_x+0.25_y+0.50.png"
+        },
+        {
+          "frame": 60,
+          "sha256": "b67263300f1869ba8fdf228d7467a926f6c9aefb4b411454b1eec0f0e0edf701",
+          "source": "mojo_gaze_61_r7c7_x+0.50_y+0.50.png"
+        },
+        {
+          "frame": 61,
+          "sha256": "773fdd8adf45dc0207e8f5b237d9744e499e86d02aad880c547916863138b95a",
+          "source": "mojo_gaze_62_r7c8_x+0.75_y+0.50.png"
+        },
+        {
+          "frame": 62,
+          "sha256": "66524577c9ef54adfa75cdc868c522d1e921ef3f9435963e34f95c0b20f2d5c2",
+          "source": "mojo_gaze_63_r7c9_x+1.00_y+0.50.png"
+        },
+        {
+          "frame": 63,
+          "sha256": "9311ba9828fe200167a6f9170d229c4fedb13dc654bd3615efd9c9a602160c20",
+          "source": "mojo_gaze_64_r8c1_x-1.00_y+0.75.png"
+        },
+        {
+          "frame": 64,
+          "sha256": "26f6c9cb516ed817fb5a4e45befbe9060065d7bb7d214f1060dcb9c2400465e6",
+          "source": "mojo_gaze_65_r8c2_x-0.75_y+0.75.png"
+        },
+        {
+          "frame": 65,
+          "sha256": "5c0cc00d1102ea5fa5304991d78f9c0351490ba50fc51c74a7ee882c7656bde6",
+          "source": "mojo_gaze_66_r8c3_x-0.50_y+0.75.png"
+        },
+        {
+          "frame": 66,
+          "sha256": "8123b34e740e9713b0669f82e9553b74b02771d8920078104c8df0bec425bb94",
+          "source": "mojo_gaze_67_r8c4_x-0.25_y+0.75.png"
+        },
+        {
+          "frame": 67,
+          "sha256": "a906b695d53ba9771cb14a620f6941ba5850c586491d7b70346edb12b9fffc93",
+          "source": "mojo_gaze_68_r8c5_x+0.00_y+0.75.png"
+        },
+        {
+          "frame": 68,
+          "sha256": "1751cb5101fa1b32dbbff1924152722fdf8548d8756089c039bf9f3bb7c86549",
+          "source": "mojo_gaze_69_r8c6_x+0.25_y+0.75.png"
+        },
+        {
+          "frame": 69,
+          "sha256": "2e40bf0793da736465400f93080bb4103a1c6e9f14e654005187214ed29824c1",
+          "source": "mojo_gaze_70_r8c7_x+0.50_y+0.75.png"
+        },
+        {
+          "frame": 70,
+          "sha256": "b8c1a2cae7db7a570f311ab644ae52eefbb3d222dd897a0def2a9c1d2b89685a",
+          "source": "mojo_gaze_71_r8c8_x+0.75_y+0.75.png"
+        },
+        {
+          "frame": 71,
+          "sha256": "f887c759dcc8631df644ffa8e376a4fda397ab62d07e31352d333422040afb64",
+          "source": "mojo_gaze_72_r8c9_x+1.00_y+0.75.png"
+        },
+        {
+          "frame": 72,
+          "sha256": "eb447779cdad8252162a84cf9fd2f68df192c84eb878082429ab69ae7d379718",
+          "source": "mojo_gaze_73_r9c1_x-1.00_y+1.00.png"
+        },
+        {
+          "frame": 73,
+          "sha256": "4dc67ab87abbd4c2facab9a4df2826fa29b6f9a61bc41d367f81c4e7028b8aed",
+          "source": "mojo_gaze_74_r9c2_x-0.75_y+1.00.png"
+        },
+        {
+          "frame": 74,
+          "sha256": "5b3969f33d91eae87fcaa5fe996cc8a873e7519150f9f3b7e73a53e1710095c6",
+          "source": "mojo_gaze_75_r9c3_x-0.50_y+1.00.png"
+        },
+        {
+          "frame": 75,
+          "sha256": "571ade77f37d74574c9aea71286e3c037283b84d56fb8c27d375f6a104a38bbb",
+          "source": "mojo_gaze_76_r9c4_x-0.25_y+1.00.png"
+        },
+        {
+          "frame": 76,
+          "sha256": "9f15b30c1e90b3e7d2c803c1543154d761754d90bf943cd5f39abc43c07c4394",
+          "source": "mojo_gaze_77_r9c5_x+0.00_y+1.00.png"
+        },
+        {
+          "frame": 77,
+          "sha256": "23f718eca74dff49c8db41ad5a626f06c07e8f3e9cc1b567df2d8d1c876f3a01",
+          "source": "mojo_gaze_78_r9c6_x+0.25_y+1.00.png"
+        },
+        {
+          "frame": 78,
+          "sha256": "cc735e1966d5261b4797d5d8454a459e05f3cc72956a14dd7cebacfcb3c77d82",
+          "source": "mojo_gaze_79_r9c7_x+0.50_y+1.00.png"
+        },
+        {
+          "frame": 79,
+          "sha256": "02daa3cdf44f106052bbe2d3f4d2d4b257bcedfd0e2fb218ec8d68418e4c2cd0",
+          "source": "mojo_gaze_80_r9c8_x+0.75_y+1.00.png"
+        },
+        {
+          "frame": 80,
+          "sha256": "2c6ef97940bfa43e7b9934180e8e69cde67f4cf88be4a11996ed68ee40620606",
+          "source": "mojo_gaze_81_r9c9_x+1.00_y+1.00.png"
         }
       ]
     }

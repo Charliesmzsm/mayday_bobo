@@ -1,0 +1,33 @@
+PASS: normal-speed native playback of every loaded clip; deferred single-click; double-click arbitration; 60/100/200% resize; nested pause/hide/lock; menu; click-through recovery; window clamp and walking boundary.
+Start idle_breathe frames=32
+idle_breathe played 2672ms; distinct timeline frames=32
+Start blink frames=10
+blink played 423ms; distinct timeline frames=10
+Start leaf_fidget frames=24
+leaf_fidget played 1012ms; distinct timeline frames=24
+Start curious_tilt frames=32
+curious_tilt played 1342ms; distinct timeline frames=32
+Start wave frames=32
+wave played 1347ms; distinct timeline frames=32
+Start happy_bounce frames=40
+happy_bounce played 1680ms; distinct timeline frames=40
+Start surprise_star frames=48
+surprise_star played 2008ms; distinct timeline frames=48
+Start sleepy_yawn frames=48
+sleepy_yawn played 2007ms; distinct timeline frames=48
+Start shy_squish frames=36
+shy_squish played 1514ms; distinct timeline frames=36
+Start think frames=40
+think played 1673ms; distinct timeline frames=40
+Start hop_right frames=48
+hop_right played 811ms; distinct timeline frames=47
+Start hop_left frames=48
+hop_left played 809ms; distinct timeline frames=47
+Start gaze frames=81
+gaze played 3000ms; distinct timeline frames=0
+playback_only_elapsed_seconds=20.307 playback_only_cpu_seconds=3.297 playback_only_single_core_cpu_percent=16.24
+native paint stress pass 0: GDI=60
+native paint stress pass 1: GDI=60
+elapsed_seconds=27.696 cpu_seconds=10.547 single_core_cpu_percent=38.08
+timer_ticks=1292 GDI before/after=31/60 working_set_bytes=173621248
+cache frame/page peaks=33546240/16613376

@@ -26,19 +26,16 @@ Get-FileHash .\MojoCarrot-Setup-1.0.0.exe -Algorithm SHA256
 
 ![安装界面](docs/images/setup.png)
 
-## 源码开发版本 v1.1.2（Release 尚未发布）
+## v1.2.0 注视与蹦走升级
 
-本仓库已包含新动作系统和用户提供的惊喜 v2 修整素材。**公开安装包下载仍为上面的 v1.0.0**，新版安装器可从源码离线构建；不将源码提交视为新版 Release 发布。
+- 注视从16个离散方向升级为81个二维姿势，按鼠标方向和距离平滑采样；移除新版70ms候选确认，保持身体与中性嘴稳定。
+- 左右各48帧 / 800ms蹦走，16/17ms时间表目标60fps；横移按腾空相位推进，落地停稳，边缘缩短步幅，完整落地再结束。
+- 12种动作438帧，加81个注视姿势，共519帧。保留惊喜v2、优先级、拖动取消、暂停恢复、单/双击与旧图集兼容。
+- 惊喜至少间隔180秒、滚动10分钟最多2次，手动也计入。随机动作在抽样前过滤冷却和次数，尽量排除最近两次；动作结束重新等待。
+- 仅缓存当前显示尺寸，帧32MiB、图集页16MiB，注视采样缓冲计入预算。素材明确区分straight和premultiplied alpha。
+- [本次实际验证与限制](docs/MOTION-V2-VALIDATION.md) · [格式说明](docs/ANIMATION-RUNTIME.md) · [素材清单](docs/ASSET-MANIFEST.json)。
 
-- 12种动作390帧，加16个注视姿势。星星眼惊喜使用主交付v2，48帧/2秒，修整嘴形、嘴舌和星形刺绣；F08/F46的细横线已替换为小椭圆口。
-- `alpha_mode`明确区分预乘RGB和直通alpha：12组动作在解码时还原预乘存储，避免透明边缘被重复乘alpha；注视与旧图集保持直通。内嵌PNG原像素不重写，可选去边变体没有混入主交付。
-- Stopwatch单调时间轴及可变41/42ms帧时长近似24fps（呼吸12fps）；16ms检查周期不增加或复制素材帧。
-- 手动动作、带权随机情绪、微动作与注视分优先级；情绪脸不被中性注视覆盖。拖动即时取消，暂停/隐藏/模拟锁屏恢复不追赶过期队列。
-- 抽样前过滤冷却与次数，尽量排除最近两次；动作结束重新等待。安静45–90秒、标准20–45秒、活泼12–25秒。惊喜至少180秒，滚动10分钟最多2次，手动也计数。
-- 当前尺寸帧缓存32MiB，图集页16MiB，按需加载与淘汰。单击延迟判定，双击不会先招手，兼容旧版设置缺省字段。
-- [v2接入与验收](docs/ART-V2.md) · [美术修整提示词](docs/ART-RETOUCH-PROMPTS.md) · [动作格式](docs/ANIMATION-RUNTIME.md) · [素材来源](docs/ASSET-MANIFEST.json)。
-
-![惊喜v2正常速度预览](docs/images/surprise-v2.gif)
+![惊喜v2预览](docs/images/surprise-v2.gif)
 
 ## 操作
 
@@ -73,7 +70,7 @@ powershell.exe -NoProfile -File .\build.ps1
 
 脚本调用 Windows .NET Framework 的 C# 编译器，优先 Framework64、回退 Framework。若受执行策略限制，请按组织允许的方式执行，不必全局关闭安全策略。
 
-输出位于 build/：MojoCarrot.exe、Uninstall.exe、MojoCarrot-Setup-1.1.2.exe。
+输出位于 build/：MojoCarrot.exe、Uninstall.exe、MojoCarrot-Setup-1.2.0.exe。
 
 ```text
 src/Pet.cs              程序入口、旧图集兼容、设置、Win32 原生绘制
@@ -100,12 +97,12 @@ build.ps1              完全离线构建
 .\build\MojoCarrot.exe --self-test .\build\motion-test
 .\build\MojoCarrot.exe --smoke-test .\build\native-smoke.txt
 .\build\MojoCarrot.exe --legacy-smoke-test .\build\legacy-smoke.txt
-.\build\MojoCarrot-Setup-1.1.2.exe --test-install .\build\installer-test
+.\build\MojoCarrot-Setup-1.2.0.exe --test-install .\build\installer-test
 ```
 
 GUI 子系统 EXE 在 PowerShell 中请使用 `Start-Process -Wait -PassThru` 等待退出并检查 ExitCode。旧自检也包含在新版 `--self-test` 内。`--legacy` 可强制以旧素材启动；新资源缺失或配置无效时自动回退，并写出本机兼容模式说明。
 
-当前 Windows 11 已测试模型、全部资源、原生分层窗口、点击/双击、尺寸、穿透恢复与隔离安装/卸载，详见 [验证说明](docs/VALIDATION.md)。尚未验证其他电脑、ARM64、真实锁屏/解锁与所有多显示器 DPI 组合。惊喜v2已修整薄线嘴与材质；F12–F13/F42–F43舌头色阶、共享叶冠浅边仍可细化。循环运动曲线本次没有改动，完整范围见v2验收记录；没有新增或重复姿势凑帧。
+当前Windows 11已通过7692项断言、新旧原生窗口冒烟与隔离安装/卸载验证。实际观察到左右蹦走约0.81秒、每组47/48帧位；目标60fps不等于任意电脑保证满帧。独立静态检查未发现需要重画的新增问题；正常速度运行记录不替代持续人工视觉验收。真实锁屏、其他电脑、ARM64和全部DPI组合尚未验证，详见[本次验证](docs/MOTION-V2-VALIDATION.md)。
 
 ## 隐私与素材
 

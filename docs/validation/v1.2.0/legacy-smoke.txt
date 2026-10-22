@@ -1,0 +1,27 @@
+PASS: normal-speed native playback of every loaded clip; deferred single-click; double-click arbitration; 60/100/200% resize; nested pause/hide/lock; menu; click-through recovery; window clamp and walking boundary.
+Start idle_breathe frames=6
+idle_breathe played 1102ms; distinct timeline frames=6
+Start hop_right frames=8
+hop_right played 1067ms; distinct timeline frames=8
+Start hop_left frames=8
+hop_left played 1071ms; distinct timeline frames=8
+Start wave frames=4
+wave played 701ms; distinct timeline frames=4
+Start happy_bounce frames=5
+happy_bounce played 851ms; distinct timeline frames=5
+Start sad frames=8
+sad played 1224ms; distinct timeline frames=8
+Start waiting frames=6
+waiting played 1018ms; distinct timeline frames=6
+Start think frames=6
+think played 832ms; distinct timeline frames=6
+Start review frames=6
+review played 1041ms; distinct timeline frames=6
+Start gaze frames=16
+gaze played 1006ms; distinct timeline frames=1
+playback_only_elapsed_seconds=9.917 playback_only_cpu_seconds=0.359 playback_only_single_core_cpu_percent=3.62
+native paint stress pass 0: GDI=60
+native paint stress pass 1: GDI=60
+elapsed_seconds=10.333 cpu_seconds=0.766 single_core_cpu_percent=7.41
+timer_ticks=634 GDI before/after=31/60 working_set_bytes=109858816
+cache frame/page peaks=33226752/14057472

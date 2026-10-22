@@ -8,8 +8,8 @@ using Microsoft.Win32;
 [assembly: AssemblyTitle("Mojo 萝卜桌宠安装程序")]
 [assembly: AssemblyCompany("Mojo Carrot")]
 [assembly: AssemblyProduct("Mojo 萝卜桌宠")]
-[assembly: AssemblyVersion("1.1.2.0")]
-[assembly: AssemblyFileVersion("1.1.2.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
 namespace MojoCarrot.Installation {
     static class SetupProgram {
         [STAThread]static int Main(string[] args){
@@ -37,7 +37,7 @@ namespace MojoCarrot.Installation {
                 InstallPaths.Shortcut(Path.Combine(InstallPaths.StartFolder,"卸载 Mojo 萝卜桌宠.lnk"),Path.Combine(InstallPaths.Home,"Uninstall.exe"),"","卸载 Mojo 萝卜桌宠");
                 if(desktop)InstallPaths.Shortcut(InstallPaths.DesktopLink,Path.Combine(InstallPaths.Home,"MojoCarrot.exe"),"","Mojo 萝卜桌宠");
                 using(RegistryKey key=Registry.CurrentUser.CreateSubKey(InstallPaths.RegistryPath)){
-                    key.SetValue("DisplayName","Mojo 萝卜桌宠");key.SetValue("DisplayVersion","1.1.2");key.SetValue("Publisher","Mojo Carrot");key.SetValue("InstallLocation",InstallPaths.Home);key.SetValue("DisplayIcon",Path.Combine(InstallPaths.Home,"MojoCarrot.exe"));key.SetValue("UninstallString","\""+Path.Combine(InstallPaths.Home,"Uninstall.exe")+"\"");key.SetValue("NoModify",1,RegistryValueKind.DWord);key.SetValue("NoRepair",1,RegistryValueKind.DWord);key.SetValue("EstimatedSize",checked((int)(new FileInfo(Path.Combine(InstallPaths.Home,"MojoCarrot.exe")).Length/1024+100)),RegistryValueKind.DWord);
+                    key.SetValue("DisplayName","Mojo 萝卜桌宠");key.SetValue("DisplayVersion","1.2.0");key.SetValue("Publisher","Mojo Carrot");key.SetValue("InstallLocation",InstallPaths.Home);key.SetValue("DisplayIcon",Path.Combine(InstallPaths.Home,"MojoCarrot.exe"));key.SetValue("UninstallString","\""+Path.Combine(InstallPaths.Home,"Uninstall.exe")+"\"");key.SetValue("NoModify",1,RegistryValueKind.DWord);key.SetValue("NoRepair",1,RegistryValueKind.DWord);key.SetValue("EstimatedSize",checked((int)(new FileInfo(Path.Combine(InstallPaths.Home,"MojoCarrot.exe")).Length/1024+100)),RegistryValueKind.DWord);
                 }
             }catch{
                 bool previous=File.Exists(Path.Combine(backup,"MojoCarrot.exe"));

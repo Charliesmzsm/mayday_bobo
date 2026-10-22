@@ -16,6 +16,7 @@ namespace MojoCarrot {
         readonly Func<string,Stream> open;
         long tick;
         int percent;
+        Bitmap gazeImage;byte[][] gazePixels;long gazeBytes;
         public int Width {get;private set;}
         public int Height {get;private set;}
         public long FrameBytes {get;private set;}
@@ -27,6 +28,7 @@ namespace MojoCarrot {
         public void Resize(int scale) {
             percent=Math.Max(60,Math.Min(200,scale));Width=192*percent/100;Height=208*percent/100;
             Clear(frames);FrameBytes=0;
+            if(gazeImage!=null)gazeImage.Dispose();gazeImage=null;gazePixels=null;gazeBytes=0;
         }
         static void Clear(Dictionary<string,Entry> entries){foreach(Entry e in entries.Values)e.Image.Dispose();entries.Clear();}
         static long Trim(Dictionary<string,Entry> entries,long bytes,long needed,long budget) {
@@ -82,7 +84,7 @@ namespace MojoCarrot {
             string key=actionId+":"+index;
             Entry e;if(frames.TryGetValue(key,out e)){e.Used=++tick;return e.Image;}
             long bytes=Width*(long)Height*4;
-            FrameBytes=Trim(frames,FrameBytes,bytes,catalog.FrameBudget);
+            FrameBytes=Trim(frames,FrameBytes-gazeBytes,bytes,catalog.FrameBudget-gazeBytes)+gazeBytes;
             FrameSpec f=action.Frames[index];int[] r=f.Rect;
             Bitmap page=Page(action.Pages[f.Page]);Bitmap output=new Bitmap(Width,Height,PixelFormat.Format32bppPArgb);
             try {
@@ -101,6 +103,38 @@ namespace MojoCarrot {
                 PeakFrameBytes=Math.Max(PeakFrameBytes,FrameBytes);return output;
             }catch{output.Dispose();throw;}
         }
-        public void Dispose(){Clear(frames);Clear(pages);FrameBytes=PageBytes=0;}
+        // Adjacent supplied poses differ by less than one source pixel inside the eyes.
+        // Bilinear sampling of their registered premultiplied pixels gives subpixel gaze;
+        // the identical body/alpha stays identical. Never interpolate emotion faces.
+        public Bitmap GetGaze(double x,double y) {
+            ActionSpec a=catalog["gaze"];
+            if(!a.IsGrid)throw new InvalidOperationException("Gaze grid unavailable");
+            double gx=(Math.Max(-1,Math.Min(1,x))+1)*(a.GridCols-1)/2.0;
+            double gy=(Math.Max(-1,Math.Min(1,y))+1)*(a.GridRows-1)/2.0;
+            int col=Math.Min(a.GridCols-2,(int)gx),row=Math.Min(a.GridRows-2,(int)gy);
+            double u=gx-col,v=gy-row;int length=Width*Height*4;
+            // Reserve both the reusable output and four CPU sampling buffers.
+            if(gazeImage==null) {
+                if(length*9L>catalog.FrameBudget)return GetFrame("gaze",(int)Math.Round(gy)*a.GridCols+(int)Math.Round(gx));
+                gazeBytes=length*5L;FrameBytes=Trim(frames,FrameBytes,gazeBytes,catalog.FrameBudget)+gazeBytes;
+                gazeImage=new Bitmap(Width,Height,PixelFormat.Format32bppPArgb);
+                gazePixels=new[]{new byte[length],new byte[length],new byte[length],new byte[length]};
+                PeakFrameBytes=Math.Max(PeakFrameBytes,FrameBytes);
+            }
+            int[] indices={row*a.GridCols+col,row*a.GridCols+col+1,(row+1)*a.GridCols+col,(row+1)*a.GridCols+col+1};
+            Rectangle rect=new Rectangle(0,0,Width,Height);
+            for(int i=0;i<4;i++) {
+                Bitmap source=GetFrame("gaze",indices[i]);BitmapData data=source.LockBits(rect,ImageLockMode.ReadOnly,PixelFormat.Format32bppPArgb);
+                try{for(int yy=0;yy<Height;yy++)Marshal.Copy(IntPtr.Add(data.Scan0,yy*data.Stride),gazePixels[i],yy*Width*4,Width*4);}
+                finally{source.UnlockBits(data);}
+            }
+            int w0=(int)Math.Round((1-u)*(1-v)*65536),w1=(int)Math.Round(u*(1-v)*65536),w2=(int)Math.Round((1-u)*v*65536),w3=65536-w0-w1-w2;
+            for(int i=0;i<length;i++)gazePixels[0][i]=(byte)Math.Max(0,Math.Min(255,(gazePixels[0][i]*w0+gazePixels[1][i]*w1+gazePixels[2][i]*w2+gazePixels[3][i]*w3+32768)>>16));
+            BitmapData output=gazeImage.LockBits(rect,ImageLockMode.WriteOnly,PixelFormat.Format32bppPArgb);
+            try{for(int yy=0;yy<Height;yy++)Marshal.Copy(gazePixels[0],yy*Width*4,IntPtr.Add(output.Scan0,yy*output.Stride),Width*4);}
+            finally{gazeImage.UnlockBits(output);}
+            return gazeImage;
+        }
+        public void Dispose(){Clear(frames);Clear(pages);if(gazeImage!=null)gazeImage.Dispose();gazeImage=null;gazePixels=null;gazeBytes=0;FrameBytes=PageBytes=0;}
     }
 }
